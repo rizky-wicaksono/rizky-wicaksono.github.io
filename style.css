@@ -141,6 +141,20 @@ a.cov:hover .hl { text-decoration:underline; text-decoration-color:var(--accent)
 .takeaway b { display:block; font-size:14px; color:var(--accent); margin-bottom:6px; }
 .takeaway p { margin:0; }
 .faq h3 { font-size:19px; margin:26px 0 6px; }
+.prose ol.steps { list-style:none; counter-reset:step; padding:0; margin:0 0 16px; }
+.prose ol.steps li { counter-increment:step; position:relative; padding-left:48px; margin-bottom:18px; }
+.prose ol.steps li::before { content:counter(step); position:absolute; left:0; top:2px; width:32px; height:32px; border-radius:50%; background:var(--ink); color:#fff; font-size:15px; font-weight:800; display:grid; place-items:center; }
+.prose ol.steps b { display:block; }
+.prose a { color:var(--accent); }
+.tool-cta { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px 24px; background:var(--ink); color:#fff; border-radius:12px; padding:22px 24px; margin:28px 0 8px; }
+.tool-cta p { color:var(--dark-muted); margin:4px 0 0; font-size:16px; line-height:1.5; }
+.tool-cta b { font-size:18px; }
+.tool-cta div { flex:1 1 280px; }
+.prose .tool-cta a.btn { color:var(--btn-ink); }
+.related { margin-top:44px; padding-top:8px; border-top:1px solid var(--line); }
+.related h2 { font-size:24px; }
+.guide-links { font-size:14px; font-weight:700; margin:-10px 0 22px; color:var(--muted); }
+.guide-links a { color:var(--accent); }
 .meta-line { color:var(--dark-muted); font-size:15px; margin:0; display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
 .avatar { border-radius:50%; object-fit:cover; display:block; flex:none; }
 .wlist { list-style:none; margin:0; padding:0; }
