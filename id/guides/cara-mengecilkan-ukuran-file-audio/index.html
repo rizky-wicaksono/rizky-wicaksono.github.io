@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cara mengecilkan ukuran file audio (M4A) | Rizky Wicaksono</title>
+<meta name="description" content="Ukuran audio adalah bitrate dikali durasi. Untuk suara, M4A 64 kbps membuat wawancara 30 menit sekitar 14 MB, cukup kecil untuk email. Pengaturan dan langkahnya.">
+<link rel="canonical" href="https://rizky-wicaksono.github.io/id/guides/cara-mengecilkan-ukuran-file-audio/">
+<link rel="alternate" hreflang="en" href="https://rizky-wicaksono.github.io/guides/how-to-make-an-audio-file-smaller/">
+<link rel="alternate" hreflang="id" href="https://rizky-wicaksono.github.io/id/guides/cara-mengecilkan-ukuran-file-audio/">
+<link rel="alternate" hreflang="x-default" href="https://rizky-wicaksono.github.io/guides/how-to-make-an-audio-file-smaller/">
+<meta name="author" content="Rizky Wicaksono">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Cara mengecilkan ukuran file audio (M4A) | Rizky Wicaksono">
+<meta property="og:description" content="Ukuran audio adalah bitrate dikali durasi. Untuk suara, M4A 64 kbps membuat wawancara 30 menit sekitar 14 MB, cukup kecil untuk email. Pengaturan dan langkahnya.">
+<meta property="og:url" content="https://rizky-wicaksono.github.io/id/guides/cara-mengecilkan-ukuran-file-audio/">
+<meta property="og:site_name" content="Rizky Wicaksono">
+<meta property="og:locale" content="id_ID">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:image" content="https://rizky-wicaksono.github.io/share-v2.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://rizky-wicaksono.github.io/share-v2.png">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Cara mengecilkan ukuran file audio: rekaman wawancara, podcast, dan voice note",
+      "description": "Ukuran audio adalah bitrate dikali durasi. Untuk suara, M4A 64 kbps membuat wawancara 30 menit sekitar 14 MB, cukup kecil untuk email. Pengaturan dan langkahnya.",
+      "inLanguage": "id",
+      "datePublished": "2026-11-25",
+      "dateModified": "2026-11-25",
+      "author": {
+        "@id": "https://rizky-wicaksono.github.io/#person"
+      },
+      "mainEntityOfPage": "https://rizky-wicaksono.github.io/id/guides/cara-mengecilkan-ukuran-file-audio/"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Rizky Wicaksono",
+          "item": "https://rizky-wicaksono.github.io/id/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Panduan PR",
+          "item": "https://rizky-wicaksono.github.io/id/guides/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Cara mengecilkan ukuran file audio: rekaman wawancara, podcast, dan voice note",
+          "item": "https://rizky-wicaksono.github.io/id/guides/cara-mengecilkan-ukuran-file-audio/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "inLanguage": "id",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Berapa bitrate yang bagus untuk rekaman suara?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "64 kbps mono sudah jernih untuk suara dan membuat rekaman satu jam sekitar 29 MB. Gunakan 96 kbps kalau rekaman berisi musik atau beberapa suara yang ingin tetap jernih."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Apakah M4A lebih kecil dari MP3?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pada bitrate yang sama, ukurannya sama, karena ukuran adalah bitrate dikali durasi. Yang berbeda adalah codec-nya: M4A memakai AAC. Tentukan bitrate-nya dulu."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Bagaimana cara mengecilkan file WAV?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ubah ke M4A. WAV berkualitas CD memakai 1.411 kbps; rekaman yang sama pada 64 kbps sekitar 22 kali lebih kecil."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Bisakah file M4A dikirim lewat WhatsApp?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Bisa. Anda bisa mengirimnya sebagai dokumen, yang diizinkan WhatsApp hingga 2 GB, meski file yang lebih kecil lebih cepat diunduh penerima."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Bisakah saya mengambil audio dari video?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Bisa. Masukkan videonya ke M4A Compressor; hanya suaranya yang diambil dan disimpan sebagai file M4A."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "name": "Cara kompres file audio, langkah demi langkah",
+      "inLanguage": "id",
+      "tool": [
+        {
+          "@type": "HowToTool",
+          "name": "M4A Compressor"
+        }
+      ],
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Buka M4A Compressor",
+          "text": "Buka M4A Compressor di Chrome, Edge, atau Safari versi terbaru.",
+          "url": "https://rizky-wicaksono.github.io/id/guides/cara-mengecilkan-ukuran-file-audio/#steps"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Masukkan rekaman Anda",
+          "text": "Masukkan file M4A, MP3, WAV, FLAC, OGG, atau AAC. File video juga bisa; hanya suaranya yang diambil.",
+          "url": "https://rizky-wicaksono.github.io/id/guides/cara-mengecilkan-ukuran-file-audio/#steps"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Pilih kualitas atau target ukuran",
+          "text": "Pilih bitrate (64 kbps untuk suara, 128 kbps untuk musik) atau ketik target ukuran, misalnya 18 MB.",
+          "url": "https://rizky-wicaksono.github.io/id/guides/cara-mengecilkan-ukuran-file-audio/#steps"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "Ubah ke mono untuk suara",
+          "text": "Di bagian Channels, pilih Mono untuk wawancara dengan satu mikrofon atau voice note.",
+          "url": "https://rizky-wicaksono.github.io/id/guides/cara-mengecilkan-ukuran-file-audio/#steps"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 5,
+          "name": "Kompres dan simpan",
+          "text": "Klik compress dan biarkan tab terbuka sampai selesai, lalu simpan file .m4a-nya.",
+          "url": "https://rizky-wicaksono.github.io/id/guides/cara-mengecilkan-ukuran-file-audio/#steps"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Lompat ke konten</a>
+<div class="dark">
+<header class="site"><div class="wrap">
+  <a class="brand" href="../../index.html"><i aria-hidden="true"></i>Rizky Wicaksono</a>
+  <div class="hd-right">
+    <nav aria-label="Main"><ul>
+      <li><a href="../../index.html#about">Tentang</a></li>
+      <li><a href="../../index.html#work">Karya</a></li>
+      <li><a href="../../tools/index.html">Tools</a></li>
+      <li><a href="../index.html">Panduan PR</a></li>
+      <li><a href="../../index.html#contact">Kontak</a></li>
+    </ul></nav>
+    <div class="lang" role="group" aria-label="Language"><a lang="en" hreflang="en" href="../../../guides/how-to-make-an-audio-file-smaller/index.html" aria-label="English">EN</a><span lang="id" aria-current="true">ID</span></div>
+  </div>
+</div></header>
+<main id="main">
+<section class="case-hero"><div class="wrap" style="grid-template-columns:1fr">
+  <div style="max-width:860px">
+    <a class="crumb" href="../index.html">← Panduan PR</a>
+    <h1 style="font-size:clamp(32px,4.6vw,60px)">Cara mengecilkan ukuran file audio: rekaman wawancara, podcast, dan voice note</h1>
+    <p class="meta-line"><img class="avatar" src="../../../assets/img/rizky-wicaksono.jpg" alt="Rizky Wicaksono" width="28" height="28" style="width:28px;height:28px"><span>Draf oleh AI · Ditinjau oleh Rizky Wicaksono · 25 November 2026 · 6 menit baca</span></p>
+  </div>
+</div></section>
+</div>
+<article class="block" style="padding-block:56px 40px"><div class="wrap"><div class="prose">
+<div class="takeaway"><b>Ringkasnya</b><p>Ukuran file audio adalah bitrate dikali durasinya. Untuk suara, audio AAC dalam file M4A pada 64 kbps sudah jernih dan kecil: satu jam sekitar 29 MB, jadi wawancara 30 menit sekitar 14 MB dan muat di email. Gunakan mono untuk satu mikrofon. Musik butuh lebih, sekitar 128 kbps.</p></div>
+<div class="tool-cta"><div><b>M4A Compressor</b><p>Atur bitrate atau target ukuran, ubah ke mono, dan simpan file .m4a sungguhan. Bisa untuk MP3, WAV, FLAC, dan file video. Gratis, dan tidak ada yang diunggah.</p></div><a class="btn" href="https://rizky-wicaksono.github.io/file-shrinker/audio.html">Coba gratis</a></div>
+<h2>Seberapa besar file audio?</h2>
+<p>Ukuran adalah bitrate (kilobit per detik) dikali durasi. Audio tanpa kompresi berkualitas CD, seperti file WAV dari alat perekam, memakai 1.411 kbps: 44.100 sampel per detik, masing-masing 16 bit, dua kanal. Itu sekitar 10,6 MB per menit, atau lebih dari 600 MB untuk wawancara satu jam.</p><p>Audio terkompresi jauh lebih kecil. Berikut ruang yang dipakai audio AAC pada bitrate yang umum:</p><ul><li>48 kbps: sekitar 0,36 MB per menit, 22 MB per jam (khusus suara)</li><li>64 kbps: sekitar 0,48 MB per menit, 29 MB per jam (suara jernih, podcast)</li><li>96 kbps: sekitar 0,72 MB per menit, 43 MB per jam (suara bagus, musik cukup)</li><li>128 kbps: sekitar 0,96 MB per menit, 58 MB per jam (musik)</li></ul>
+<h2>Pengaturan apa yang cocok untuk rekaman suara?</h2>
+<ul><li><strong>Bitrate:</strong> 64 kbps untuk wawancara, podcast, dan memo suara. Turunkan ke 48 kbps hanya kalau ukuran lebih penting daripada kualitas suara.</li><li><strong>Kanal:</strong> mono. Satu suara di satu mikrofon tidak butuh dua kanal, dan mono memberikan seluruh bitrate ke satu kanal.</li><li><strong>Sample rate:</strong> biarkan apa adanya, atau pilih 22 kHz untuk suara. Sample rate yang lebih rendah memotong frekuensi tinggi, yang jarang dipakai suara manusia.</li></ul><p>Untuk mencapai ukuran tertentu, pilih Target file size lalu ketik angkanya, misalnya 18 MB untuk email. Alat ini memilih bitrate yang hasilnya mendekati angka itu.</p>
+<h2 id="steps">Cara kompres file audio, langkah demi langkah</h2>
+<ol class="steps">
+<li><b>Buka M4A Compressor</b>Buka <a href="https://rizky-wicaksono.github.io/file-shrinker/audio.html">M4A Compressor</a> di Chrome, Edge, atau Safari versi terbaru.</li>
+<li><b>Masukkan rekaman Anda</b>Masukkan file M4A, MP3, WAV, FLAC, OGG, atau AAC. File video juga bisa; hanya suaranya yang diambil.</li>
+<li><b>Pilih kualitas atau target ukuran</b>Pilih bitrate (64 kbps untuk suara, 128 kbps untuk musik) atau ketik target ukuran, misalnya 18 MB.</li>
+<li><b>Ubah ke mono untuk suara</b>Di bagian Channels, pilih Mono untuk wawancara dengan satu mikrofon atau voice note.</li>
+<li><b>Kompres dan simpan</b>Klik compress dan biarkan tab terbuka sampai selesai, lalu simpan file .m4a-nya.</li>
+</ol>
+<h2>Rekaman adalah catatan</h2>
+<p>Rekaman wawancara bukan sekadar file. Ia catatan paling akurat tentang apa yang diucapkan juru bicara Anda, dan saat ada sengketa kutipan, sering kali hanya itu yang Anda punya. Karena itu, ada beberapa pertanyaan PR yang layak diajukan sebelum mengompres dan mengirim apa pun:</p><ul><li><strong>Apakah semua orang tahu sedang direkam?</strong> Sampaikan di awal, terekam. Ini melindungi wartawan dan juru bicara Anda sekaligus.</li><li><strong>Siapa yang menyimpan rekaman asli, dan berapa lama?</strong> Sepakati dengan klien. Kalau sebuah kutipan dipersoalkan berbulan-bulan kemudian, Anda butuh rekaman utuh, bukan potongan yang sudah dikompres.</li><li><strong>Bagian mana yang off the record?</strong> Rekaman yang dibagikan bisa menyebar. Kalau sebagian percakapan off the record, jangan teruskan bagian itu.</li></ul><p>Membagikan rekaman Anda sendiri kepada wartawan setelah wawancara juga bisa membangun kepercayaan: itu menunjukkan Anda yakin dengan apa yang diucapkan dan membantu mereka mengutip dengan akurat. (Saran praktisi; cek dulu kebijakan klien Anda.)</p>
+<h2>Bagaimana tim PR memakainya</h2>
+<ul><li><strong>Rekaman wawancara untuk wartawan.</strong> Setelah wawancara media, kirim salinan yang sudah dikompres supaya wartawan bisa mengecek kutipan. Obrolan 30 menit pada 64 kbps mono sekitar 14 MB.</li><li><strong>Voice note juru bicara dan potongan untuk radio.</strong> Klip pendek pada 64 sampai 96 kbps terkirim cepat lewat WhatsApp dan email.</li><li><strong>File tamu podcast.</strong> Bagikan salinan ringan untuk ditinjau, dan simpan yang asli untuk proses edit.</li><li><strong>Audio dari video.</strong> Masukkan video acara untuk mendapatkan suaranya saja sebagai M4A kecil, berguna untuk transkripsi.</li></ul><p>Selalu simpan rekaman aslinya. Kompresi membuang detail yang tidak bisa dikembalikan, jadi edit dari yang asli dan kirim salinan yang kecil.</p>
+<h2>Kenapa M4A, dan apakah rekaman saya diunggah?</h2>
+<p>M4A adalah audio AAC di dalam file MP4. File ini bisa diputar di iPhone, Android, Windows, dan Mac tanpa aplikasi tambahan. Alat ini memakai encoder AAC bawaan browser, jadi rekaman tidak pernah diunggah, yang penting untuk wawancara off the record atau yang masih embargo.</p><p>Perlu mengirim deck atau video juga? Lihat <a href="../cara-kompres-pdf-untuk-email/index.html">cara kompres PDF untuk email</a> dan <a href="../cara-kompres-video-untuk-email-dan-whatsapp/index.html">cara kompres video untuk email dan WhatsApp</a>.</p>
+<div class="tool-cta"><div><b>M4A Compressor</b><p>Atur bitrate atau target ukuran, ubah ke mono, dan simpan file .m4a sungguhan. Bisa untuk MP3, WAV, FLAC, dan file video. Gratis, dan tidak ada yang diunggah.</p></div><a class="btn" href="https://rizky-wicaksono.github.io/file-shrinker/audio.html">Coba gratis</a></div>
+<div class="faq"><h2>Pertanyaan yang sering diajukan</h2>
+<h3>Berapa bitrate yang bagus untuk rekaman suara?</h3>
+<p>64 kbps mono sudah jernih untuk suara dan membuat rekaman satu jam sekitar 29 MB. Gunakan 96 kbps kalau rekaman berisi musik atau beberapa suara yang ingin tetap jernih.</p>
+<h3>Apakah M4A lebih kecil dari MP3?</h3>
+<p>Pada bitrate yang sama, ukurannya sama, karena ukuran adalah bitrate dikali durasi. Yang berbeda adalah codec-nya: M4A memakai AAC. Tentukan bitrate-nya dulu.</p>
+<h3>Bagaimana cara mengecilkan file WAV?</h3>
+<p>Ubah ke M4A. WAV berkualitas CD memakai 1.411 kbps; rekaman yang sama pada 64 kbps sekitar 22 kali lebih kecil.</p>
+<h3>Bisakah file M4A dikirim lewat WhatsApp?</h3>
+<p>Bisa. Anda bisa mengirimnya sebagai dokumen, yang diizinkan WhatsApp hingga 2 GB, meski file yang lebih kecil lebih cepat diunduh penerima.</p>
+<h3>Bisakah saya mengambil audio dari video?</h3>
+<p>Bisa. Masukkan videonya ke M4A Compressor; hanya suaranya yang diambil dan disimpan sebagai file M4A.</p>
+</div>
+<div class="related"><h2>Panduan terkait</h2>
+<ul>
+<li><a href="../cara-kompres-pdf-untuk-email/index.html">Cara kompres PDF untuk email: kecilkan deck di bawah 25 MB</a></li>
+<li><a href="../cara-kompres-video-untuk-email-dan-whatsapp/index.html">Cara kompres video untuk email dan WhatsApp</a></li>
+</ul></div>
+<div class="sources"><h2>Sumber dan bacaan lanjutan</h2>
+<ul>
+<li><a href="https://support.google.com/mail/answer/6584?hl=en" rel="noopener">Gmail Help: Send attachments with your Gmail message</a></li>
+<li><a href="https://faq.whatsapp.com/453914586839706/?cms_platform=web" rel="noopener">WhatsApp Help Center: How to send media, contacts, or location (Web)</a></li>
+<li><a href="https://github.com/rizky-wicaksono/file-shrinker" rel="noopener">Kode sumber dan catatan teknis File Shrinker (GitHub)</a></li>
+</ul></div>
+<p style="margin-top:40px"><a class="btn" href="../../index.html#contact" style="color:var(--btn-ink)">Rencanakan kampanye berikutnya</a></p>
+</div></div></article>
+<div class="wrap pager"><a href="../cara-kompres-video-untuk-email-dan-whatsapp/index.html"><small>Sebelumnya</small>← Cara kompres video untuk email dan WhatsApp</a><a href="../index.html" style="text-align:right"><small>Kembali</small>Semua panduan →</a></div>
+</main>
+<footer class="site"><div class="wrap">
+  <div class="cols3">
+    <div>
+      <img class="avatar" src="../../../assets/img/rizky-wicaksono.jpg" alt="Rizky Wicaksono" width="48" height="48" loading="lazy" style="width:48px;height:48px;margin-bottom:14px">
+      <a class="brand" href="../../index.html" style="color:#fff"><i aria-hidden="true"></i>Rizky Wicaksono</a>
+      <p style="margin-top:14px">Konsultan public relations di Jakarta.</p>
+      <p class="note">Gambar artikel adalah milik penerbitnya dan terhubung ke artikel aslinya. Nama klien dan logo adalah milik pemiliknya.</p>
+    </div>
+    <div><h4>Situs</h4><ul>
+      <li><a href="../../index.html#about">Tentang</a></li>
+      <li><a href="../../index.html#work">Karya pilihan</a></li>
+      <li><a href="../../tools/index.html">Tools</a></li>
+      <li><a href="../index.html">Panduan PR</a></li>
+      <li><a href="../../index.html#contact">Kontak</a></li></ul></div>
+    <div><h4>Di tempat lain</h4><ul>
+      <li><a href="https://www.linkedin.com/in/rizky-wicaksono" rel="me noopener">LinkedIn</a></li>
+      <li><a href="mailto:rizky.wcaksono@gmail.com">Email</a></li>
+      <li><a href="https://rizkywcaksono.notion.site/Rizky-Wicaksono-Selected-Works-in-Communications-289a1011ab8a80149838f9cf12a1e07d" rel="me noopener">Portofolio Notion</a></li></ul></div>
+  </div>
+  <p style="margin:28px 0 0"><small>&copy; 2026 Rizky Wicaksono</small></p>
+</div></footer>
+</body>
+</html>
