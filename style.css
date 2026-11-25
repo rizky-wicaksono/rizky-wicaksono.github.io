@@ -140,7 +140,8 @@ a.cov:hover .hl { text-decoration:underline; text-decoration-color:var(--accent)
 .takeaway b { display:block; font-size:14px; color:var(--accent); margin-bottom:6px; }
 .takeaway p { margin:0; }
 .faq h3 { font-size:19px; margin:26px 0 6px; }
-.meta-line { color:var(--dark-muted); font-size:15px; margin:0; }
+.meta-line { color:var(--dark-muted); font-size:15px; margin:0; display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.avatar { border-radius:50%; object-fit:cover; display:block; flex:none; }
 .wlist { list-style:none; margin:0; padding:0; }
 .wlist li { border-top:2px solid var(--ink); }
 .wlist li:last-child { border-bottom:1px solid var(--line); }
