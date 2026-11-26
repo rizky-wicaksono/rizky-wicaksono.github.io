@@ -1,0 +1,9 @@
+# Only used while GitHub Pages still serves this branch directly (Settings > Pages > Source: "Deploy from a branch").
+# Keeps the generator, the Markdown sources and the docs out of the public site.
+# Once the source is "GitHub Actions", the workflow in .github/workflows/deploy.yml builds _site/ and this file is not used.
+exclude:
+  - _src
+  - content
+  - README.md
+  - .pages.yml
+  - .github
