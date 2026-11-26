@@ -431,8 +431,10 @@ content:
       fields:
       - name
       - year
-      sort: order
-      order: asc
+      sort: [order]
+      default:
+        sort: order
+        order: asc
     fields:
     - name: name
       label: Nama klien / Client name
@@ -611,8 +613,10 @@ content:
     view:
       primary: title
       fields: [title, date]
-      sort: order
-      order: asc
+      sort: [order]
+      default:
+        sort: order
+        order: asc
     fields:
       - name: title
         label: Title
@@ -728,8 +732,10 @@ content:
     view:
       primary: title
       fields: [title, date]
-      sort: order
-      order: asc
+      sort: [order]
+      default:
+        sort: order
+        order: asc
     fields:
       - name: title
         label: Title
