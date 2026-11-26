@@ -1,0 +1,28 @@
+# Tools page cards. Edited with Pages CMS; read by _src/content.py.
+tools:
+- name: File Shrinker
+  url: /file-shrinker/
+  slug: file-shrinker
+  icons:
+  - pdf
+  - video
+  - audio
+  guides:
+  - label: PDF
+    guide: how-to-compress-a-pdf-for-email
+  - label: Video
+    guide: how-to-compress-a-video-for-email-and-whatsapp
+  - label: Audio
+    guide: how-to-make-an-audio-file-smaller
+  english:
+    kinds: PDF · Video · Audio
+    desc: Make PDFs, videos and audio small enough to email or upload, right in your browser. Files are never uploaded.
+    tags:
+    - Free
+    - Runs in your browser
+  indonesian:
+    kinds: PDF · Video · Audio
+    desc: Kecilkan PDF, video, dan audio supaya muat dikirim lewat email atau diunggah, langsung di browser. File tidak pernah diunggah.
+    tags:
+    - Gratis
+    - Jalan di browser

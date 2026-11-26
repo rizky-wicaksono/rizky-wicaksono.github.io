@@ -1,4 +1,4 @@
-# Pages CMS (https://pagescms.org) configuration: lets you edit the guides in a browser.
+# Pages CMS (https://pagescms.org) configuration: lets you edit the site text (home page, case studies, tools, guides) in a browser.
 # Saving in Pages CMS commits to the repo; the "Build and deploy site" workflow then rebuilds the site.
 media:
   - name: images
@@ -8,6 +8,598 @@ media:
     categories: [image]
 
 content:
+  - name: home_id
+    label: Beranda (Bahasa Indonesia)
+    type: file
+    path: content/home/id.yml
+    format: yaml
+    fields:
+    - name: title
+      label: Judul halaman di Google / Page title (Google, browser tab)
+      type: string
+    - name: desc
+      label: Deskripsi di Google / Meta description
+      type: text
+      description: Sekitar 155 karakter. / About 155 characters.
+    - name: h1
+      label: Judul besar / Main heading
+      type: string
+    - name: lead
+      label: Kalimat pembuka / Intro line
+      type: text
+    - name: btn_cta
+      label: Tombol utama / Main button
+      type: string
+    - name: btn_work
+      label: Tombol kedua / Second button
+      type: string
+    - name: hero_alt
+      label: Teks alternatif ilustrasi / Illustration alt text
+      type: string
+      description: Dibacakan untuk pembaca layar. / Read out by screen readers.
+    - name: about_label
+      label: 'Tentang: label kecil / About: small label'
+      type: string
+    - name: about_h2
+      label: 'Tentang: judul / About: heading'
+      type: string
+    - name: stat_years_value
+      label: Angka tahun / Years number
+      type: string
+      description: Contoh / e.g. 5+
+    - name: stat_years
+      label: Keterangan angka tahun / Years caption
+      type: string
+    - name: stat_clients_value
+      label: Angka klien / Clients number
+      type: string
+      description: Contoh / e.g. 22+
+    - name: stat_clients
+      label: Keterangan angka klien / Clients caption
+      type: string
+    - name: about_p
+      label: 'Tentang: paragraf / About: paragraphs'
+      type: text
+      description: Boleh pakai <strong>tebal</strong>. / You can use <strong>bold</strong>.
+      list: true
+    - name: mc_label
+      label: 'Marcomm: label kecil / small label'
+      type: string
+    - name: mc_h2
+      label: 'Marcomm: judul / heading'
+      type: string
+    - name: mc_lead
+      label: 'Marcomm: paragraf / paragraph'
+      type: text
+    - name: mc_btn
+      label: 'Marcomm: tombol / button'
+      type: string
+    - name: mc_stats
+      label: 'Marcomm: angka / stats'
+      type: object
+      list:
+        collapsible:
+          collapsed: true
+          summary: '{number} {label}'
+      fields:
+      - name: number
+        label: Angka / Number
+        type: string
+      - name: label
+        label: Keterangan / Caption
+        type: string
+    - name: eng_label
+      label: 'PR engineering: label kecil / small label'
+      type: string
+    - name: eng_h2
+      label: 'PR engineering: judul / heading'
+      type: string
+    - name: eng_chip
+      label: 'PR engineering: tautan ke Tools / link to Tools'
+      type: string
+    - name: eng_p
+      label: 'PR engineering: paragraf / paragraphs'
+      type: text
+      description: Boleh pakai <strong>tebal</strong>. / You can use <strong>bold</strong>.
+      list: true
+    - name: eng_list
+      label: 'PR engineering: daftar poin / bullet list'
+      type: string
+      list: true
+    - name: eng_end
+      label: 'PR engineering: kalimat penutup / closing line'
+      type: text
+    - name: services_h2
+      label: 'Layanan: judul / Services: heading'
+      type: string
+    - name: see
+      label: 'Layanan: awalan tautan / link prefix'
+      type: string
+      description: Teks sebelum nama klien, termasuk spasi di akhir. / Text before the client name, including the trailing space.
+    - name: services
+      label: Layanan / Services
+      type: object
+      list:
+        collapsible:
+          collapsed: true
+          summary: '{title}'
+      fields:
+      - name: title
+        label: Nama layanan / Service
+        type: string
+      - name: text
+        label: Penjelasan / Description
+        type: text
+      - name: case
+        label: Studi kasus yang ditautkan / Linked case study
+        type: string
+        description: Nama file case study tanpa .yml, misalnya jaff-market. / Case study file name without .yml.
+      - name: icon
+        label: Ikon / Icon
+        type: select
+        options:
+          values:
+          - marcomm
+          - media
+          - story
+          - corp
+          - event
+          - content
+    - name: work_h2
+      label: 'Karya: judul / Work: heading'
+      type: string
+    - name: work_note
+      label: 'Karya: catatan di bawah judul / note under heading'
+      type: string
+      description: Kosongkan bila tidak perlu. / Leave empty for none.
+    - name: case_go
+      label: 'Karya: teks tautan kartu / card link text'
+      type: string
+    - name: notion_card
+      label: Kartu Notion / Notion card
+      type: object
+      fields:
+      - name: meta
+        label: Label kecil / Small label
+        type: string
+      - name: name
+        label: Judul / Title
+        type: string
+      - name: teaser
+        label: Keterangan / Teaser
+        type: string
+      - name: go
+        label: Teks tautan / Link text
+        type: string
+    - name: exp_h2
+      label: 'Pengalaman: judul / Experience: heading'
+      type: string
+    - name: experience
+      label: Pengalaman / Experience
+      type: object
+      description: Urutan di sini = urutan di halaman. / Order here = order on the page.
+      list:
+        collapsible:
+          collapsed: true
+          summary: '{role} · {where}'
+      fields:
+      - name: role
+        label: Jabatan / Role
+        type: string
+      - name: where
+        label: Tempat / Where
+        type: string
+      - name: when
+        label: Waktu / When
+        type: string
+    - name: edu
+      label: Pendidikan / Education
+      type: text
+    - name: guides_h2
+      label: 'Panduan: judul / Guides: heading'
+      type: string
+    - name: guides_all
+      label: 'Panduan: tautan semua panduan / all guides link'
+      type: string
+    - name: talk_h2
+      label: 'Kontak: judul / Contact: heading'
+      type: string
+    - name: talk_lead
+      label: 'Kontak: paragraf / paragraph'
+      type: text
+    - name: talk_li
+      label: 'Kontak: tombol LinkedIn / LinkedIn button'
+      type: string
+    - name: talk_mail
+      label: 'Kontak: tombol email / email button'
+      type: string
+  - name: home_en
+    label: Home page (English)
+    type: file
+    path: content/home/en.yml
+    format: yaml
+    fields:
+    - name: title
+      label: Judul halaman di Google / Page title (Google, browser tab)
+      type: string
+    - name: desc
+      label: Deskripsi di Google / Meta description
+      type: text
+      description: Sekitar 155 karakter. / About 155 characters.
+    - name: h1
+      label: Judul besar / Main heading
+      type: string
+    - name: lead
+      label: Kalimat pembuka / Intro line
+      type: text
+    - name: btn_cta
+      label: Tombol utama / Main button
+      type: string
+    - name: btn_work
+      label: Tombol kedua / Second button
+      type: string
+    - name: hero_alt
+      label: Teks alternatif ilustrasi / Illustration alt text
+      type: string
+      description: Dibacakan untuk pembaca layar. / Read out by screen readers.
+    - name: about_label
+      label: 'Tentang: label kecil / About: small label'
+      type: string
+    - name: about_h2
+      label: 'Tentang: judul / About: heading'
+      type: string
+    - name: stat_years_value
+      label: Angka tahun / Years number
+      type: string
+      description: Contoh / e.g. 5+
+    - name: stat_years
+      label: Keterangan angka tahun / Years caption
+      type: string
+    - name: stat_clients_value
+      label: Angka klien / Clients number
+      type: string
+      description: Contoh / e.g. 22+
+    - name: stat_clients
+      label: Keterangan angka klien / Clients caption
+      type: string
+    - name: about_p
+      label: 'Tentang: paragraf / About: paragraphs'
+      type: text
+      description: Boleh pakai <strong>tebal</strong>. / You can use <strong>bold</strong>.
+      list: true
+    - name: mc_label
+      label: 'Marcomm: label kecil / small label'
+      type: string
+    - name: mc_h2
+      label: 'Marcomm: judul / heading'
+      type: string
+    - name: mc_lead
+      label: 'Marcomm: paragraf / paragraph'
+      type: text
+    - name: mc_btn
+      label: 'Marcomm: tombol / button'
+      type: string
+    - name: mc_stats
+      label: 'Marcomm: angka / stats'
+      type: object
+      list:
+        collapsible:
+          collapsed: true
+          summary: '{number} {label}'
+      fields:
+      - name: number
+        label: Angka / Number
+        type: string
+      - name: label
+        label: Keterangan / Caption
+        type: string
+    - name: eng_label
+      label: 'PR engineering: label kecil / small label'
+      type: string
+    - name: eng_h2
+      label: 'PR engineering: judul / heading'
+      type: string
+    - name: eng_chip
+      label: 'PR engineering: tautan ke Tools / link to Tools'
+      type: string
+    - name: eng_p
+      label: 'PR engineering: paragraf / paragraphs'
+      type: text
+      description: Boleh pakai <strong>tebal</strong>. / You can use <strong>bold</strong>.
+      list: true
+    - name: eng_list
+      label: 'PR engineering: daftar poin / bullet list'
+      type: string
+      list: true
+    - name: eng_end
+      label: 'PR engineering: kalimat penutup / closing line'
+      type: text
+    - name: services_h2
+      label: 'Layanan: judul / Services: heading'
+      type: string
+    - name: see
+      label: 'Layanan: awalan tautan / link prefix'
+      type: string
+      description: Teks sebelum nama klien, termasuk spasi di akhir. / Text before the client name, including the trailing space.
+    - name: services
+      label: Layanan / Services
+      type: object
+      list:
+        collapsible:
+          collapsed: true
+          summary: '{title}'
+      fields:
+      - name: title
+        label: Nama layanan / Service
+        type: string
+      - name: text
+        label: Penjelasan / Description
+        type: text
+      - name: case
+        label: Studi kasus yang ditautkan / Linked case study
+        type: string
+        description: Nama file case study tanpa .yml, misalnya jaff-market. / Case study file name without .yml.
+      - name: icon
+        label: Ikon / Icon
+        type: select
+        options:
+          values:
+          - marcomm
+          - media
+          - story
+          - corp
+          - event
+          - content
+    - name: work_h2
+      label: 'Karya: judul / Work: heading'
+      type: string
+    - name: work_note
+      label: 'Karya: catatan di bawah judul / note under heading'
+      type: string
+      description: Kosongkan bila tidak perlu. / Leave empty for none.
+    - name: case_go
+      label: 'Karya: teks tautan kartu / card link text'
+      type: string
+    - name: notion_card
+      label: Kartu Notion / Notion card
+      type: object
+      fields:
+      - name: meta
+        label: Label kecil / Small label
+        type: string
+      - name: name
+        label: Judul / Title
+        type: string
+      - name: teaser
+        label: Keterangan / Teaser
+        type: string
+      - name: go
+        label: Teks tautan / Link text
+        type: string
+    - name: exp_h2
+      label: 'Pengalaman: judul / Experience: heading'
+      type: string
+    - name: experience
+      label: Pengalaman / Experience
+      type: object
+      description: Urutan di sini = urutan di halaman. / Order here = order on the page.
+      list:
+        collapsible:
+          collapsed: true
+          summary: '{role} · {where}'
+      fields:
+      - name: role
+        label: Jabatan / Role
+        type: string
+      - name: where
+        label: Tempat / Where
+        type: string
+      - name: when
+        label: Waktu / When
+        type: string
+    - name: edu
+      label: Pendidikan / Education
+      type: text
+    - name: guides_h2
+      label: 'Panduan: judul / Guides: heading'
+      type: string
+    - name: guides_all
+      label: 'Panduan: tautan semua panduan / all guides link'
+      type: string
+    - name: talk_h2
+      label: 'Kontak: judul / Contact: heading'
+      type: string
+    - name: talk_lead
+      label: 'Kontak: paragraf / paragraph'
+      type: text
+    - name: talk_li
+      label: 'Kontak: tombol LinkedIn / LinkedIn button'
+      type: string
+    - name: talk_mail
+      label: 'Kontak: tombol email / email button'
+      type: string
+  - name: cases
+    label: Studi kasus / Case studies
+    type: collection
+    path: content/cases
+    format: yaml
+    filename:
+      template: '{primary}.yml'
+      field: create
+    view:
+      primary: name
+      fields:
+      - name
+      - year
+      sort: order
+      order: asc
+    fields:
+    - name: name
+      label: Nama klien / Client name
+      type: string
+      required: true
+    - name: title_name
+      label: Nama pendek untuk judul halaman / Short name for page title
+      type: string
+      description: Opsional. Kosongkan untuk memakai nama klien. / Optional; leave empty to use the client name.
+    - name: order
+      label: Urutan / Order
+      type: number
+      description: 1 tampil pertama. / 1 comes first.
+      required: true
+    - name: desc
+      label: Deskripsi di Google / Meta description
+      type: text
+      description: Sekitar 155 karakter. / About 155 characters.
+    - name: industry
+      label: Industri / Industry
+      type: string
+    - name: year
+      label: Tahun / Year
+      type: string
+    - name: role
+      label: Lingkup kerja / Scope
+      type: string
+    - name: teaser
+      label: Kalimat di kartu beranda / Home page card line
+      type: string
+    - name: stats
+      label: Angka utama / Key stats
+      type: object
+      list:
+        collapsible:
+          collapsed: true
+          summary: '{number} {label}'
+      fields:
+      - name: number
+        label: Angka / Number
+        type: string
+      - name: label
+        label: Keterangan / Caption
+        type: string
+    - name: background
+      label: Latar belakang / Background
+      type: text
+    - name: challenge
+      label: Tantangan / Challenge
+      type: text
+    - name: result
+      label: Hasil / Result
+      type: text
+    - name: bullets
+      label: Poin hasil / Result bullets
+      type: text
+      list: true
+    - name: coverage
+      label: Liputan pilihan / Featured coverage
+      type: object
+      list:
+        collapsible:
+          collapsed: true
+          summary: '{outlet}: {headline}'
+      fields:
+      - name: outlet
+        label: Media / Outlet
+        type: string
+      - name: headline
+        label: Judul artikel / Headline
+        type: text
+      - name: url
+        label: Tautan artikel / Article link
+        type: string
+        description: Kosongkan bila tidak ada tautan. / Leave empty if there is no link.
+      - name: image
+        label: Gambar pratinjau / Preview image
+        type: string
+        description: URL gambar dari artikel, atau assets/img/nama-file.jpg. / Image URL from the article, or assets/img/file.jpg.
+    - name: card_id
+      label: Kartu beranda Bahasa Indonesia / Indonesian home page card
+      type: object
+      description: Studi kasus sendiri hanya dalam bahasa Inggris. / The case study page itself is English only.
+      fields:
+      - name: industry
+        label: Industri
+        type: string
+      - name: year
+        label: Tahun
+        type: string
+      - name: teaser
+        label: Kalimat di kartu
+        type: string
+  - name: tools
+    label: Tools
+    type: file
+    path: content/tools.yml
+    format: yaml
+    fields:
+    - name: tools
+      label: Alat / Tools
+      type: object
+      list:
+        collapsible:
+          collapsed: true
+          summary: '{name}'
+      fields:
+      - name: name
+        label: Nama alat / Tool name
+        type: string
+        required: true
+      - name: url
+        label: Alamat / Address
+        type: string
+        description: Contoh / e.g. /file-shrinker/
+      - name: slug
+        label: ID alat / Tool ID
+        type: string
+        description: Huruf kecil dan tanda hubung. / Lowercase with hyphens.
+      - name: icons
+        label: Ikon / Icons
+        type: string
+        description: 'Pilih dari: pdf, video, audio. / Choose from: pdf, video, audio.'
+        list: true
+      - name: guides
+        label: Tautan panduan / Guide links
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: '{label}'
+        fields:
+        - name: label
+          label: Teks tautan / Link text
+          type: string
+        - name: guide
+          label: Panduan / Guide
+          type: string
+          description: Nama file panduan bahasa Inggris tanpa .md. / English guide file name without .md.
+      - name: english
+        label: Teks bahasa Inggris / English text
+        type: object
+        fields:
+        - name: kinds
+          label: Jenis file / File types
+          type: string
+        - name: desc
+          label: Penjelasan / Description
+          type: text
+        - name: tags
+          label: Label / Tags
+          type: string
+          list: true
+      - name: indonesian
+        label: Teks Bahasa Indonesia / Indonesian text
+        type: object
+        fields:
+        - name: kinds
+          label: Jenis file
+          type: string
+        - name: desc
+          label: Penjelasan
+          type: text
+        - name: tags
+          label: Label
+          type: string
+          list: true
   - name: guides_en
     label: Guides (English)
     type: collection

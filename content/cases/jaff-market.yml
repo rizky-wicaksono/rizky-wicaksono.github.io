@@ -1,0 +1,44 @@
+# Case study: JAFF Market. The file name is the page address (/work/jaff-market/).
+order: 1
+name: JAFF Market
+industry: Film
+year: '2025'
+role: Marketing Communications Assistant Manager
+teaser: Led marketing communications for a film industry market
+desc: 'Case study: 663 media coverages, 8.5M social views and 1,120 business meetings for JAFF Market, the Jogja-NETPAC film festival’s market.'
+stats:
+- number: '663'
+  label: Media coverages
+- number: 8.5M
+  label: Social media views
+- number: 1,120
+  label: Approved business meetings
+background: In 2025, concurrent with my role at Dialogue Communications, I was also appointed as Marketing Communications Assistant Manager for JAFF Market, the business and networking platform of the Jogja-NETPAC Asian Film Festival (JAFF). I led the integrated marketing communications strategy across public relations, social media, branding, website, and documentation, coordinating a team of 36 core members and 26 volunteers.
+challenge: The main challenge was to strengthen JAFF Market’s visibility and establish it as a credible film industry marketplace, distinct from the festival itself. This required an integrated communication approach that could build industry credibility, expand audience reach, and create a consistent brand experience across digital, media, and on-site touchpoints.
+result: Through the integrated marketing communications strategy, I helped strengthen JAFF Market’s visibility among industry professionals while expanding its reach to broader audiences. The communication ecosystem also supported the market’s digital participation and business networking objectives.
+bullets:
+- Generated 663 media coverages through 9 press releases, 8 thought leadership articles, 13 media interviews/visits, and partnerships with 49 media outlets.
+- Generated 8.5M social media views, 1.2M reach, and 69.1K interactions, while growing Instagram by 8.8K followers.
+- Reached 200K+ audiences through 14 KOL collaborations, generating 15K+ engagements.
+- Reached 68K+ unique website visitors and supported 6,806 platform users, including 1,120 approved business meetings.
+coverage:
+- outlet: Variety
+  headline: JAFF Market Partners with Cinepoint to Track Indonesia’s Box Office Surge as Local Films Outpace Hollywood
+  url: https://variety.com/2025/film/news/jaff-market-cinepoint-indonesias-film-boom-1236525440/
+  image: assets/img/jaff-variety.jpg
+- outlet: Screen Daily
+  headline: '“It is time”: how the fast-growing Indonesian film industry inspired the inaugural JAFF Market'
+  url: https://www.screendaily.com/features/it-is-time-how-the-fast-growing-indonesian-film-industry-inspired-the-inaugural-jaff-market/5199619.article
+  image: https://d1nslcd7m2225b.cloudfront.net/Pictures/1024x536/8/9/6/1437896_lindagozali_969086.jpg
+- outlet: Asian Movie Pulse
+  headline: JAFF Market Opens Submissions for Filmmakers and Creators Across Asia
+  url: https://asianmoviepulse.com/2025/08/jaff-market-opens-submissions-for-filmmakers-and-creators-across-asia/
+  image: https://asianmoviepulse.com/wp-content/uploads/2025/08/76b8c41f-eebb-9de5-35e0-eed76ad042a0.jpg
+- outlet: Antara
+  headline: JAFF dorong sineas daftar program JAFF Market untuk jaring koneksi
+  url: https://www.antaranews.com/berita/5065397/jaff-dorong-sineas-daftar-program-jaff-market-untuk-jaring-koneksi
+  image: https://cdn.antaranews.com/cache/1200x800/2025/08/26/JAFF-2.jpeg
+card_id:
+  industry: Film
+  year: '2025'
+  teaser: Memimpin komunikasi pemasaran untuk pasar industri film

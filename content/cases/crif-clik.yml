@@ -1,0 +1,38 @@
+# Case study: PT CRIF Lembaga Informasi Keuangan (CLIK). The file name is the page address (/work/crif-clik/).
+order: 5
+name: PT CRIF Lembaga Informasi Keuangan (CLIK)
+title_name: CRIF CLIK
+industry: Financial services
+year: '2024'
+role: PR and communication strategy
+teaser: Explained a B2B credit brand to the media
+desc: 'Case study: PR and thought leadership for CRIF CLIK, a credit information and analytics company in Indonesia.'
+stats: []
+background: In 2024, I managed the public relations and communication strategy for PT CRIF Lembaga Informasi Keuangan (CLIK), a leader in credit information and business analytics. CLIK plays a vital role in Indonesia’s financial ecosystem by providing data-driven credit information services that empower financial institutions to make smarter, more responsible lending decisions.
+challenge: The main challenge was to build public trust and awareness for a B2B brand operating in a highly regulated and technical industry. Many stakeholders, from financial institutions to the media, had limited understanding of CLIK’s function and impact. The communication strategy therefore needed to simplify complex topics around credit information, data analytics, and financial inclusion, while positioning CLIK as a reliable, compliant, and forward-thinking industry leader.
+result: Through a focused mix of media relations, thought leadership, and strategic storytelling, I successfully elevated CLIK’s visibility and credibility within the financial services sector.
+bullets:
+- Crafted and executed press release and media outreach plans to communicate CLIK’s milestones and key partnerships.
+- Positioned company executives as industry thought leaders, through interviews, op-eds, and expert commentary in top-tier financial media.
+- Developed content strategies that translated complex financial concepts into accessible narratives for broader audiences.
+coverage:
+- outlet: The Jakarta Post
+  headline: OJK to legitimize firms that credit-score the unbanked
+  url: https://www.thejakartapost.com/business/2024/04/23/ojk-to-legitimize-firms-that-credit-score-the-unbanked.html
+  image: https://img.jakpost.net/c/2023/11/09/2023_11_09_144193_1699545341._large.jpg
+- outlet: Kontan
+  headline: Menilik Peran Biro Kredit Swasta Memperkuat Akses dan Infrastruktur Kredit
+  url: https://keuangan.kontan.co.id/news/menilik-peran-biro-kredit-swasta-memperkuat-akses-dan-infrastruktur-kredit
+  image: https://foto.kontan.co.id/NS8ePnDp8R2P3fhW_rhHCKb87GI=/smart/2024/09/06/1615435036p.jpg
+- outlet: Kompas
+  headline: Lembaga Keuangan Didorong Perbesar Akses Masyarakat Memperoleh Kredit
+  url: https://money.kompas.com/read/2024/02/09/140202926/lembaga-keuangan-didorong-perbesar-akses-masyarakat-memperoleh-kredit
+  image: https://asset.kompas.com/crops/N_vaRGEq7dQfjIm4ARp3mhR1w9U=/24x2:992x647/1200x675/filters:watermark(data/photo/2026/01/30/697c815e7ef28.png,0,-0,1)/data/photo/2024/01/19/65aa57f01a4d7.jpg
+- outlet: Warta Ekonomi
+  headline: CLIK Dukung Pemerintah Wujudkan Pemerataan Akses Keuangan untuk UMKM
+  url: https://wartaekonomi.co.id/read554354/clik-dukung-pemerintah-wujudkan-pemerataan-akses-keuangan-untuk-umkm
+  image: https://foto.wartaekonomi.co.id/files/arsip_foto_2024_08_19/barista_115101_small.jpg
+card_id:
+  industry: Jasa keuangan
+  year: '2024'
+  teaser: Menjelaskan brand kredit B2B kepada media

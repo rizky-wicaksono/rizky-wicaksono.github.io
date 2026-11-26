@@ -1,0 +1,41 @@
+# Case study: CropLife Indonesia. The file name is the page address (/work/croplife-indonesia/).
+order: 7
+name: CropLife Indonesia
+industry: Agriculture and biotechnology
+year: '2023'
+role: Communication strategy
+teaser: Annual content plan on agricultural biotechnology
+desc: 'Case study: annual social media and content strategy that made agricultural biotechnology easy to understand for CropLife Indonesia.'
+stats: []
+background: In 2023, I had the opportunity to strategize a communication plan for CropLife Indonesia (CLID) under Dialogue Communications, focusing on strengthening public understanding of biotechnology in agriculture. My main objective was to make this complex and often technical topic more accessible to the general public while ensuring alignment with the interests of key stakeholders, from policymakers to farmers.
+challenge: The main challenge was transforming scientific narratives into engaging, easy-to-digest messages that could resonate with both industry professionals and everyday audiences. Beyond that, I needed to identify credible public figures who could authentically advocate for biotechnology, bridging the gap between awareness and acceptance.
+result: By combining storytelling with strategic content planning, I helped increase CLID’s social media visibility and audience engagement, ensuring each communication piece served both educational and advocacy purposes. The campaign also successfully positioned CLID as a trusted voice in Indonesia’s agricultural innovation space.
+bullets:
+- Developed and executed the annual social media and content strategy, aligning with advocacy goals.
+- Produced educational digital content that simplified complex biotech narratives for a wider audience.
+- Secured collaborations with public figures and influencers, amplifying the campaign’s reach and impact.
+coverage:
+- outlet: Antara
+  headline: 'CropLife: Benih bioteknologi diperlukan guna perkuat ketahanan pangan'
+  url: https://www.antaranews.com/berita/3943962/croplife-benih-bioteknologi-diperlukan-guna-perkuat-ketahanan-pangan
+  image: https://img.antaranews.com/cache/1200x800/2024/02/02/1706854726005_1.jpg
+- outlet: IDN Times
+  headline: Kerap Gagal Panen, Petani Harus Adopsi Konsep Lebih Modern
+  url: https://www.idntimes.com/science/discovery/petani-harus-adopsi-konsep-yang-lebih-modern-00-h7csw-d1kbmf
+  image: https://image.idn.media/post/20240129/masalah-panen-padi-cover-artikel-1-5e458bc26d38ca301fa0ceb9deb72a87.jpg
+- outlet: Antara Foto
+  headline: Sarasehan pertanian berkelanjutan
+  url: https://www.antarafoto.com/id/view/2267359/sarasehan-pertanian-berkelanjutan
+  image: https://img.antarafoto.com/cache/1200x800/2024/07/31/sarasehan-pertanian-berkelanjutan-1cli7-dom.jpg
+- outlet: detikFinance
+  headline: Pertanian Modern Upaya Menggenjot Produksi Panen
+  url: https://finance.detik.com/foto-bisnis/7469109/pertanian-modern-upaya-menggenjot-produksi-panen
+  image: https://awsimages.detik.net.id/api/wm/2024/08/01/pertanian-modern-upaya-menggenjot-produksi-panen-2_169.jpeg?wid=54&w=1200&v=1&t=jpeg
+- outlet: Tempo
+  headline: Ketahanan Pangan Kian Rapuh, Indonesia Berpotensi Menjadi Importir Beras Terbesar di Dunia
+  url: https://bisnis.tempo.co/read/1898143/ketahanan-pangan-kian-rapuh-indonesia-berpotensi-menjadi-importir-beras-terbesar-di-dunia
+  image: ''
+card_id:
+  industry: Pertanian dan bioteknologi
+  year: '2023'
+  teaser: Rencana konten tahunan tentang bioteknologi pertanian

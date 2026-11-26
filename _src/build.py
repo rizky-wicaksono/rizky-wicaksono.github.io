@@ -1,25 +1,13 @@
 #!/usr/bin/env python3
 """Builds the static site into _site/ (or the folder given as the first argument).
 
-Page content lives in data.py and i18n.py, guides in content/guides/<lang>/*.md (edited with Pages CMS),
-article preview images in images.json. Static files (assets/, share-v2.png) are copied from the repo root."""
+All editable text lives in content/ (home page, case studies, tools, guides; edited with Pages CMS) and is read by
+content.py. Interface labels are in i18n.py, layout and CSS here. Static files (assets/, share-v2.png) are copied from the repo root."""
 import html, json, os, re, shutil
 from data import *  # noqa: F401,F403  (ROOT, BASE, LINKEDIN, NOTION, CASES, EXPERIENCE, e, logo_tile ...)
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-IMAGES = json.load(open(os.path.join(HERE, "images.json")))
-LINKS = json.load(open(os.path.join(HERE, "notion_links.json")))  # article links copied from the Notion portfolio
-for _c in CASES:
-    _c["coverage"] = [tuple(x) for x in LINKS[_c["slug"]]]
-
-SERVICES = [
-    ("marcomm", "Integrated marketing communications", "PR, social media, branding, website and documentation run as one plan. At JAFF Market that plan reached 8.5M social views and 68K+ website visitors.", "jaff-market"),
-    ("media", "Media relations", "Press releases, interviews and media partnerships. DAIKIN’s launch earned 334+ coverages, and JAFF Market’s 663 came from 9 press releases and 13 interviews.", "daikin-indonesia"),
-    ("story", "Brand storytelling", "Brand refreshes told through the consumer brands people already know, like Guardian and IKEA for DFI Retail.", "dfi-retail-nusantara"),
-    ("corp", "Corporate communications", "Executive voice and stakeholder messaging for regulated companies, such as interviews and op-eds for CLIK.", "crif-clik"),
-    ("event", "Launch and event communications", "Press conferences and debut events: three for DAIKIN’s factory launch, and a youth orchestra’s first public concert.", "trinity-entertainment-group"),
-    ("content", "Content strategy", "Annual social and content plans that make technical topics easy to read, like agricultural biotechnology for CropLife.", "croplife-indonesia"),
-]
+# IMAGES (coverage preview images by article URL) comes from the case files via data.py
 
 ICONS = {  # simple geometric marks, one per service, drawn in currentColor
     "media": '<circle cx="36" cy="36" r="30" fill="none" stroke="currentColor" stroke-width="8"/><circle cx="36" cy="36" r="10" fill="currentColor"/>',
@@ -279,7 +267,7 @@ def short(s):
 
 def thumb(src, fallback, extra="", pre=""):
     if src and not src.startswith("http"):
-        src = pre + src
+        src = pre + src.lstrip("/")  # local image: assets/img/x.jpg (the CMS may write /assets/img/x.jpg)
     img = f'<img src="{e(src)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">' if src else ""
     return f'<span class="thumb">{extra}<span class="fb" aria-hidden="true">{e(fallback)}</span>{img}</span>'
 
@@ -293,17 +281,7 @@ def logo_thumb(c, pre="", radius=""):
     return f'<span class="logo-thumb"{st}><img src="{pre}{p}" alt="{e(c["name"])} logo"></span>'
 
 
-DESCS = {
-    "jaff-market": "Case study: 663 media coverages, 8.5M social views and 1,120 business meetings for JAFF Market, the Jogja-NETPAC film festival’s market.",
-    "daikin-indonesia": "Case study: 334+ media coverages and 3 press conferences for the DAIKIN Indonesia factory launch and its first locally made products.",
-    "dfi-retail-nusantara": "Case study: PR for DFI Retail Nusantara, the company behind Guardian and IKEA Indonesia, during its rebrand from Hero Supermarket.",
-    "guardian-indonesia": "Case study: public relations for Guardian Indonesia as it moved from a health store to an interactive lifestyle brand.",
-    "crif-clik": "Case study: PR and thought leadership for CRIF CLIK, a credit information and analytics company in Indonesia.",
-    "trinity-entertainment-group": "Case study: PR for Trinity Optima Production and the debut concert of Trinity Youth Symphony Orchestra, The Legends 8.",
-    "croplife-indonesia": "Case study: annual social media and content strategy that made agricultural biotechnology easy to understand for CropLife Indonesia.",
-}
-TITLE_NAME = {"dfi-retail-nusantara": "DFI Retail Nusantara", "crif-clik": "CRIF CLIK"}
-HOME_DESC = "Public relations consultant in Jakarta: media relations, marketing communications and brand storytelling. Now handling Netflix, Suzuki and Shell Indonesia."
+# DESCS and TITLE_NAME (case page descriptions and short names) come from the case files via data.py
 
 
 import posixpath
@@ -551,8 +529,8 @@ def home(lang="en"):
   <div class="about">
     <div><p class="label">{T['about_label']}</p><h2><span aria-hidden="true">👋</span> {T['about_h2']}</h2>
       <div class="stats">
-          <div class="stat"><b>5+</b><span>{T['stat_years']}</span></div>
-          <div class="stat"><b>22+</b><span>{T['stat_clients']}</span></div>
+          <div class="stat"><b>{T['stat_years_value']}</b><span>{T['stat_years']}</span></div>
+          <div class="stat"><b>{T['stat_clients_value']}</b><span>{T['stat_clients']}</span></div>
         </div>
     </div>
     <div>
