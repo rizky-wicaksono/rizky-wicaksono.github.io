@@ -1,4 +1,6 @@
-"""Loads the guides from content/guides/<lang>/<slug>.md (YAML frontmatter + HTML body).
+"""Loads the site content from content/: home page text, case studies, tools and the guides.
+
+Guides: loaded from content/guides/<lang>/<slug>.md (YAML frontmatter + HTML body).
 
 These files are what Pages CMS edits. Each file is one article in one language; the English and
 Indonesian versions of the same article share the same `key` (the English slug). The file name is the slug.
@@ -73,3 +75,85 @@ def load_articles():
                 a["order"] = fm.get("order", 999)
             a["tool"] = a.get("tool") or bool(X.get("tool"))
     return sorted(by_key.values(), key=lambda a: (a["order"], a["slug"].get("en") or next(iter(a["slug"].values()))))
+
+
+# ---------------------------------------------------------------- home page, case studies, tools
+
+ROOT_CONTENT = os.path.join(HERE, "..", "content")
+
+
+def _s(v):
+    """Text value from YAML: None becomes "", numbers the CMS may save unquoted become strings."""
+    return "" if v is None else str(v)
+
+
+def _yaml(*parts):
+    with open(os.path.join(ROOT_CONTENT, *parts), encoding="utf-8") as f:
+        return yaml.safe_load(f) or {}
+
+
+def load_home(lang):
+    """content/home/<lang>.yml -> (HOME[lang] dict as build.py expects, experience rows)."""
+    d = _yaml("home", f"{lang}.yml")
+    T = {}
+    for k, v in d.items():
+        if k == "experience":
+            continue
+        if k == "mc_stats":
+            v = [(_s(x["number"]), _s(x["label"])) for x in v or []]
+        elif k == "services":
+            v = [(_s(x["icon"]), _s(x["title"]), _s(x["text"]), _s(x["case"])) for x in v or []]
+        elif k == "notion_card":
+            v = tuple(_s((v or {}).get(f)) for f in ("meta", "name", "teaser", "go"))
+        elif isinstance(v, list):
+            v = [_s(x) for x in v]
+        else:
+            v = _s(v)
+        T[k] = v
+    exp = [(_s(x["role"]), _s(x["where"]), _s(x["when"])) for x in d.get("experience") or []]
+    return T, exp
+
+
+def load_cases():
+    """content/cases/<slug>.yml -> (CASES list, Indonesian card text by slug, case page descriptions,
+    short names for page titles, coverage preview images by article URL)."""
+    cases, case_id, descs, title_name, images = [], {}, {}, {}, {}
+    for path in glob.glob(os.path.join(ROOT_CONTENT, "cases", "*.yml")):
+        slug = os.path.splitext(os.path.basename(path))[0]
+        d = _yaml("cases", os.path.basename(path))
+        cov = []
+        for x in d.get("coverage") or []:
+            url = _s(x.get("url")) or None
+            cov.append((_s(x.get("outlet")), _s(x.get("headline")), url))
+            if url and x.get("image"):
+                images[url] = {"image": _s(x["image"])}
+        cases.append(dict(
+            order=d.get("order", 999), slug=slug, name=_s(d["name"]), year=_s(d.get("year")), industry=_s(d.get("industry")),
+            role=_s(d.get("role")), teaser=_s(d.get("teaser")),
+            stats=[(_s(x["number"]), _s(x["label"])) for x in d.get("stats") or []],
+            background=_s(d.get("background")), challenge=_s(d.get("challenge")), result=_s(d.get("result")),
+            bullets=[_s(x) for x in d.get("bullets") or []], coverage=cov))
+        x = d.get("card_id") or {}
+        case_id[slug] = {k: _s(x.get(k)) for k in ("industry", "year", "teaser")}
+        descs[slug] = _s(d.get("desc"))
+        if d.get("title_name"):
+            title_name[slug] = _s(d["title_name"])
+    cases.sort(key=lambda c: (c["order"], c["slug"]))
+    return cases, case_id, descs, title_name, images
+
+
+def load_tools():
+    """content/tools.yml -> TOOLS list as build.py expects."""
+    out = []
+    for t in _yaml("tools.yml").get("tools") or []:
+        x = {"slug": _s(t.get("slug")), "url": _s(t["url"]), "name": _s(t["name"]),
+             "kinds": {}, "desc": {}, "tags": {}, "icons": [_s(i) for i in t.get("icons") or []]}
+        for lang, key in (("en", "english"), ("id", "indonesian")):
+            L = t.get(key) or {}
+            x["kinds"][lang] = _s(L.get("kinds"))
+            x["desc"][lang] = _s(L.get("desc"))
+            x["tags"][lang] = [_s(g) for g in L.get("tags") or []]
+        if t.get("guides"):
+            x["guides"] = [(_s(g["label"]), _s(g["guide"])) for g in t["guides"]]
+        out.append(x)
+    return out

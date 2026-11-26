@@ -1,0 +1,36 @@
+# Case study: Guardian Indonesia. The file name is the page address (/work/guardian-indonesia/).
+order: 4
+name: Guardian Indonesia
+industry: Health and beauty retail
+year: '2025'
+role: PR strategy
+teaser: Brand refresh from health store to lifestyle brand
+desc: 'Case study: public relations for Guardian Indonesia as it moved from a health store to an interactive lifestyle brand.'
+stats: []
+background: As part of my role managing PT DFI Retail Nusantara Tbk’s communications portfolio, I also manage the Public Relations strategy for Guardian Indonesia, one of Indonesia’s leading health and beauty retailers. The main objective was to strengthen Guardian’s brand positioning as an accessible yet trusted wellness destination, while keeping the brand relevant and engaging to both loyal and new consumers.
+challenge: Guardian was transforming to refresh its brand identity, shifting from being perceived as a traditional health store to becoming a vibrant, interactive lifestyle brand. The challenge was to communicate this evolution across multiple channels, ensuring consistency between in-store experiences, media exposure, and digital engagement, while maintaining the brand’s trust and credibility in the wellness category.
+result: Through strategic storytelling and consistent brand communication, I helped redefine Guardian’s public image and increase its media visibility across health, lifestyle, and business publications.
+bullets:
+- Developed and executed press release and media engagement plans highlighting new store concepts, product innovation, and consumer experiences.
+- Strengthened media relations, ensuring continuous exposure aligned with the brand’s direction.
+coverage:
+- outlet: Tempo
+  headline: Dukung Gaya Hidup Sehat, 8.500 Pelari Ramaikan Guardian Run 2025
+  url: https://www.tempo.co/gaya-hidup/dukung-gaya-hidup-sehat-8-500-pelari-ramaikan-guardian-run-2025-2071982
+  image: assets/img/guardian-tempo.jpg
+- outlet: Antara
+  headline: Guardian Indonesia perluas akses sanitasi sekolah untuk kesehatan anak
+  url: https://www.antaranews.com/berita/4968881/guardian-indonesia-perluas-akses-sanitasi-sekolah-untuk-kesehatan-anak
+  image: https://img.antaranews.com/cache/1200x800/2025/07/15/WhatsApp-Image-2025-07-15-at-19.57.29.jpeg
+- outlet: IDN Times
+  headline: Wajah Baru Guardian Plaza Indonesia, Fresh dan Lebih Luas!
+  url: https://www.idntimes.com/life/women/wajah-baru-guardian-plaza-indonesia-00-rqp85-vsxhs2
+  image: https://image.idntimes.com/post/20251008/upload_17b80b9246c4e155f904c033959a0288_9209fa92-4914-4a7c-b3e5-2fb664288e64_watermarked_idntimes-2.jpg
+- outlet: Marketeers
+  headline: Guardian Buka Kembali Gerai di Plaza Indonesia Jadi Makin Imersif
+  url: https://www.marketeers.com/guardian-buka-kembali-gerai-di-plaza-indonesia-jadi-makin-imersif/
+  image: https://imagedelivery.net/2MtOYVTKaiU0CCt-BLmtWw/613891ac-91a4-4281-16c5-472a54ef8700/w=1280,h=849
+card_id:
+  industry: Ritel kesehatan dan kecantikan
+  year: '2025'
+  teaser: Penyegaran brand dari toko kesehatan menjadi brand gaya hidup

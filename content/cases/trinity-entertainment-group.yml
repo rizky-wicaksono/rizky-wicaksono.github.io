@@ -1,0 +1,38 @@
+# Case study: Trinity Entertainment Group. The file name is the page address (/work/trinity-entertainment-group/).
+order: 6
+name: Trinity Entertainment Group
+industry: Music and entertainment
+year: '2023'
+role: PR and communication
+teaser: Artist visibility and a youth orchestra’s debut concert
+desc: 'Case study: PR for Trinity Optima Production and the debut concert of Trinity Youth Symphony Orchestra, The Legends 8.'
+stats: []
+background: In 2023, I managed public relations and communication initiatives for Trinity Entertainment Group (Trinity Optima Production), one of Indonesia’s leading music and entertainment companies. My key focus was on artist visibility, media engagement, and brand storytelling, while also supporting Trinity Youth Symphony Orchestra (TRUST) in launching their first public concert, The Legends 8.
+challenge: The challenge was to maintain consistent media presence for a diverse entertainment portfolio from mainstream music artists to a classical youth orchestra, each requiring unique communication strategies. For TRUST, the task was to introduce the orchestra to a wider audience, position it as a credible youth-driven musical ensemble, and drive excitement for their debut concert.
+result: By combining strong media outreach, creative storytelling, and targeted positioning, I helped amplify both Trinity’s brand voice and TRUST’s concert presence in the public eye.
+bullets:
+- Planned and executed the PR strategy for TRUST’s “The Legends 8” concert, including press materials, media relations, and interview coordination.
+- Secured national media coverage across entertainment and lifestyle platforms.
+- Strengthened Trinity’s media relationships.
+- Collaborated closely with internal teams to align messaging between Trinity’s commercial artists and TRUST’s orchestral initiatives.
+coverage:
+- outlet: Harper’s Bazaar Indonesia
+  headline: Antusiasme Tinggi Terhadap Orkestra yang Tak Disangka oleh Trinity Youth Symphony Orchestra
+  url: https://harpersbazaar.co.id/articles/read/5/2023/18930/antusiasme-tinggi-terhadap-orkestra-yang-tak-disangka-oleh-trinity-youth-symphony-orchestra
+  image: https://images.harpersbazaar.co.id/unsafe/0x0/smart/media/body_3178c2fcb4744bc9a60d4b150a4764bb.JPG
+- outlet: Tempo
+  headline: Cara Trinity Inkubasi Siapkan Figur Baru seperti Afgan dan Maudy Ayunda untuk Gen Z
+  url: https://seleb.tempo.co/read/1696166/cara-trinity-inkubasi-siapkan-figur-baru-seperti-afgan-dan-maudy-ayunda-untuk-gen-z
+  image: ''
+- outlet: Kontan
+  headline: Trinity Optima Production Jadi Perusahaan Label Rekaman Lokal Terbesar di Indonesia
+  url: https://industri.kontan.co.id/news/trinity-optima-production-jadi-perusahaan-label-rekaman-lokal-terbesar-di-indonesia
+  image: https://asset.kontan.co.id/general/images/og_image.jpg
+- outlet: YouTube
+  headline: 'Yonathan Nugroho, CEO Trinity Optima: Kiat Trinity Optima Bangkit dari Tekanan Perubahan'
+  url: https://www.youtube.com/watch?v=gxWv0mHgcrs&feature=youtu.be
+  image: https://i.ytimg.com/vi/gxWv0mHgcrs/maxresdefault.jpg
+card_id:
+  industry: Musik dan hiburan
+  year: '2023'
+  teaser: Visibilitas artis dan konser perdana orkestra muda

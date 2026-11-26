@@ -1,0 +1,117 @@
+# Home page text (Bahasa Indonesia). Edited with Pages CMS; read by _src/content.py.
+title: 'Rizky Wicaksono: konsultan public relations di Jakarta'
+desc: 'Konsultan public relations di Jakarta: media relations, komunikasi pemasaran, dan brand storytelling. Saat ini menangani Netflix, Suzuki, dan Shell Indonesia.'
+h1: Konsultan public relations di Jakarta
+lead: Rizky Wicaksono membantu brand di industri apa pun lewat media relations, komunikasi pemasaran terpadu, dan brand storytelling.
+btn_cta: Rencanakan kampanye berikutnya
+btn_work: Lihat karya pilihan
+about_label: Tentang
+about_h2: Halo, saya Rizky Wicaksono.
+stat_years_value: 5+
+stat_years: Tahun di bidang public relations
+stat_clients_value: 22+
+stat_clients: Klien yang ditangani
+about_p:
+- Saya seorang pencerita sekaligus ahli strategi. Selama 5+ tahun saya membantu brand mengembangkan suaranya lewat <strong>Public Relations</strong> dan <strong>Marketing Communications</strong>.
+- Saya berfokus menghubungkan brand dengan audiensnya lewat <strong>media relations, brand storytelling, dan kampanye terpadu</strong> yang membuat orang berhenti, membaca, dan mengingat.
+- Saat ini saya menangani Netflix Indonesia, Suzuki Indonesia, dan Shell Indonesia. Pengalaman saya mencakup hiburan, teknologi, otomotif, transportasi, manufaktur, ritel, konsumen, dan korporasi, dan saya terbuka untuk industri apa pun.
+mc_label: Komunikasi pemasaran
+mc_h2: Satu rencana untuk PR, media sosial, brand, dan web
+mc_lead: Di JAFF Market, pasar film pertama di Indonesia, Rizky Wicaksono memimpin komunikasi pemasaran terpadu yang mencakup public relations, media sosial, branding, situs web, dan dokumentasi, bersama 36 anggota tim inti dan 26 relawan.
+mc_btn: Baca studi kasus JAFF Market (EN)
+mc_stats:
+- number: '663'
+  label: Pemberitaan media
+- number: 8,5 jt
+  label: Tayangan media sosial
+- number: 68 rb+
+  label: Pengunjung unik situs web
+- number: 8,8 rb
+  label: Pengikut Instagram baru
+- number: 1,2 jt
+  label: Jangkauan media sosial
+- number: '62'
+  label: 'Orang yang dipimpin: 36 tim inti dan 26 relawan'
+eng_label: Rekayasa public relations
+eng_h2: PR yang belajar membangun dengan AI
+eng_chip: 'Coba alat pertama: File Shrinker'
+eng_p:
+- Saya tidak bisa coding, dan saya tidak mengklaim demikian. Yang saya miliki adalah rasa ingin tahu dan kemampuan yang cukup untuk memahami cara sesuatu dibangun, belajar lebih jauh, dan mencoba, dengan AI yang mengerjakan bagian beratnya.
+- 'Saya sedang menuju peran yang sudah ada di pemasaran tapi belum di PR: <strong>public relations engineer</strong>. Tujuannya sederhana: memakai AI untuk memangkas bagian PR yang repetitif, seperti pemantauan media, draf pertama, penyusunan daftar media, dan pelaporan, supaya lebih banyak waktu untuk strategi dan hubungan.'
+eng_list:
+- Belajar cara kerja alat AI dan kode, cukup untuk memahami dan mencobanya
+- Mengubah playbook PR saya menjadi alat kecil yang bisa dipakai ulang, dengan bantuan AI
+- Menulis tentang apa yang berhasil dan apa yang tidak
+eng_end: Terbuka untuk kolaborasi di bidang PR dan AI, undangan berbicara, dan tim komunikasi yang ingin mengotomatiskan bagian yang membosankan.
+services_h2: Yang saya kerjakan
+see: 'Lihat '
+services:
+- icon: marcomm
+  title: Komunikasi pemasaran terpadu
+  text: PR, media sosial, branding, situs web, dan dokumentasi dijalankan sebagai satu rencana. Di JAFF Market, rencana itu menjangkau 8,5 juta tayangan media sosial dan 68 ribu+ pengunjung situs web.
+  case: jaff-market
+- icon: media
+  title: Media relations
+  text: Siaran pers, wawancara, dan kemitraan media. Peluncuran DAIKIN menghasilkan 334+ pemberitaan, dan 663 pemberitaan JAFF Market berasal dari 9 siaran pers dan 13 wawancara.
+  case: daikin-indonesia
+- icon: story
+  title: Brand storytelling
+  text: Penyegaran brand yang diceritakan lewat brand konsumen yang sudah dikenal orang, seperti Guardian dan IKEA untuk DFI Retail.
+  case: dfi-retail-nusantara
+- icon: corp
+  title: Komunikasi korporat
+  text: Suara eksekutif dan pesan untuk pemangku kepentingan bagi perusahaan yang diatur regulasi, seperti wawancara dan opini untuk CLIK.
+  case: crif-clik
+- icon: event
+  title: Komunikasi peluncuran dan acara
+  text: 'Konferensi pers dan acara perdana: tiga untuk peluncuran pabrik DAIKIN, dan konser publik pertama sebuah orkestra muda.'
+  case: trinity-entertainment-group
+- icon: content
+  title: Strategi konten
+  text: Rencana media sosial dan konten tahunan yang membuat topik teknis mudah dibaca, seperti bioteknologi pertanian untuk CropLife.
+  case: croplife-indonesia
+work_h2: Karya pilihan
+work_note: Studi kasus tersedia dalam Bahasa Inggris.
+case_go: Baca studi kasus (EN)
+notion_card:
+  meta: Notion
+  name: Portofolio lengkap
+  teaser: Semua proyek di satu tempat.
+  go: Buka di Notion
+exp_h2: Pengalaman
+edu: Bachelor of Arts di bidang Komunikasi, Universitas Sriwijaya.
+guides_h2: Panduan PR
+guides_all: Lihat semua panduan
+talk_h2: Ayo ngobrol
+talk_lead: Untuk proyek PR dan kolaborasi, hubungi Rizky Wicaksono lewat LinkedIn atau email.
+talk_li: Kirim pesan di LinkedIn
+talk_mail: Kirim email
+hero_alt: Ilustrasi seseorang yang bekerja dengan laptop
+experience:
+- role: Communications Consultant
+  where: Image Dynamics PR · Netflix Indonesia
+  when: Mar 2026 sampai sekarang
+- role: Public Relations Consultant
+  where: Image Dynamics PR · Suzuki Indonesia
+  when: Jan 2026 sampai sekarang
+- role: Public Relations Consultant
+  where: Image Dynamics PR · Shell Indonesia
+  when: Sekarang
+- role: Marketing Communications Assistant Manager
+  where: JAFF Market
+  when: Jun 2025 sampai Jan 2026
+- role: Senior Public Relations Consultant
+  where: Dialogue Communications
+  when: Jul 2024 sampai Jan 2026
+- role: Junior Public Relations Consultant
+  where: Dialogue Communications
+  when: Jan 2023 sampai Jun 2024
+- role: Corporate Communications Intern
+  where: PT Moda Integrasi Transportasi Jabodetabek
+  when: Nov 2022 sampai Jan 2023
+- role: Public Relations Intern
+  where: Lifepal
+  when: Jun sampai Okt 2022
+- role: Public Relations Intern
+  where: Thamrin Group
+  when: Jun sampai Jul 2021
