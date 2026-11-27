@@ -26,3 +26,26 @@ tools:
     tags:
     - Gratis
     - Jalan di browser
+- name: Meeting Minutes Maker
+  url: /meeting-minutes/
+  slug: meeting-minutes
+  icons:
+  - notes
+  - check
+  guides:
+  - label: Minutes / Notulen
+    guide: how-to-write-meeting-minutes-from-a-transcript
+  english:
+    kinds: Minutes · Contact report
+    desc: Turn a meeting transcript into minutes or a client contact report, with decisions and action items you pick and check. Export to Word or Markdown. Nothing is uploaded.
+    tags:
+    - Free
+    - Runs in your browser
+    - No AI
+  indonesian:
+    kinds: Notulen · Contact report
+    desc: Ubah transkrip rapat jadi notulen atau contact report untuk klien, dengan keputusan dan tindak lanjut yang Anda pilih dan cek sendiri. Ekspor ke Word atau Markdown. Tidak ada yang diunggah.
+    tags:
+    - Gratis
+    - Jalan di browser
+    - Tanpa AI

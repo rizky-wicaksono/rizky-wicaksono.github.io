@@ -10,6 +10,7 @@ Personal site of Rizky Wicaksono, built from `_src/` (Python) and `content/` (al
 | Studi kasus / Case studies | `content/cases/<slug>.yml` | Satu file per klien, termasuk liputan dan teks kartu Indonesia / One file per client, incl. coverage and the Indonesian card text |
 | Tools | `content/tools.yml` | Kartu di halaman Tools / Cards on the Tools page |
 | Guides (English), Panduan (Bahasa Indonesia) | `content/guides/<lang>/<slug>.md` | Panduan PR dan panduan alat / PR guides and tool how-tos |
+| (kode / code) | `meeting-minutes/` | Alat Pembuat Notulen Rapat, disalin apa adanya ke `/meeting-minutes/` / The Meeting Minutes Maker tool, copied as-is to `/meeting-minutes/`. See its README. |
 
 Teks tombol navigasi, footer, dan label kecil lainnya masih ada di `_src/i18n.py`. / Navigation, footer and other small interface labels are still in `_src/i18n.py`.
 
