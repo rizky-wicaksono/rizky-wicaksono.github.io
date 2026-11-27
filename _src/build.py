@@ -237,6 +237,10 @@ a.cov:hover .hl { text-decoration:underline; text-decoration-color:var(--accent)
 @media (prefers-reduced-motion: reduce) { * { transition:none !important; scroll-behavior:auto !important; } }
 """
 
+# Privacy-friendly traffic counter (GoatCounter): no cookies, no personal data.
+# Dashboard: https://rizky-wicaksono.goatcounter.com
+GOATCOUNTER = '<script data-goatcounter="https://rizky-wicaksono.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>\n'
+
 FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">\n'
 
 
@@ -404,7 +408,7 @@ def head(title, desc, path, extra="", pre=None, lang="en", alt=None, gsv=False):
 <meta name="theme-color" content="#0a0a0a">
 <link rel="icon" href="{pre}favicon.svg" type="image/svg+xml">
 {FONTS}<link rel="stylesheet" href="{pre}style.css">
-{extra}</head>
+{extra}{GOATCOUNTER}</head>
 <body>
 <a class="skip" href="#main">{C['skip']}</a>
 <div class="dark">
