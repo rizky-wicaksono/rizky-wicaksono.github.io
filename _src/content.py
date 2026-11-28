@@ -9,7 +9,7 @@ Body format: each section starts with an <h2> heading (a "## Heading" line also 
 contains only [[steps]] marks where the numbered steps from the frontmatter go; sections after it come
 after the steps. Everything else in the body is kept as written (HTML).
 """
-import glob, html, os, re
+import collections, glob, html, os, re
 
 import yaml
 
@@ -95,7 +95,8 @@ def _yaml(*parts):
 def load_home(lang):
     """content/home/<lang>.yml -> (HOME[lang] dict as build.py expects, experience rows)."""
     d = _yaml("home", f"{lang}.yml")
-    T = {}
+    # Pages CMS leaves a field out of the file when it is saved empty; read a missing field as empty text.
+    T = collections.defaultdict(str)
     for k, v in d.items():
         if k == "experience":
             continue
@@ -104,7 +105,7 @@ def load_home(lang):
         elif k == "services":
             v = [(_s(x["icon"]), _s(x["title"]), _s(x["text"]), _s(x["case"])) for x in v or []]
         elif k == "cta":  # the fill-in-the-blank contact sentence: text fields stay text, option lists stay lists
-            v = {f: [_s(x) for x in o or []] if isinstance(o, list) else _s(o) for f, o in (v or {}).items()}
+            v = collections.defaultdict(str, {f: [_s(x) for x in o or []] if isinstance(o, list) else _s(o) for f, o in (v or {}).items()})
         elif k == "notion_card":
             v = tuple(_s((v or {}).get(f)) for f in ("meta", "name", "teaser", "go"))
         elif isinstance(v, list):
