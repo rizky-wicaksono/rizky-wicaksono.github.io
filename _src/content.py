@@ -117,6 +117,18 @@ def load_home(lang):
     return T, exp
 
 
+def load_clients():
+    """content/clients.yml -> ({"en": label, "id": label}, [(name, logo path without leading /)]).
+    Entries without a logo are skipped; a missing file means no strip."""
+    try:
+        d = _yaml("clients.yml")
+    except FileNotFoundError:
+        return {"en": "", "id": ""}, []
+    labels = {"en": _s(d.get("label_en")), "id": _s(d.get("label_id"))}
+    rows = [(_s(x.get("name")), _s(x.get("logo")).lstrip("/")) for x in d.get("clients") or [] if x and x.get("logo")]
+    return labels, rows
+
+
 def load_cases():
     """content/cases/<slug>.yml -> (CASES list, Indonesian card text by slug, case page descriptions,
     short names for page titles, coverage preview images by article URL)."""
