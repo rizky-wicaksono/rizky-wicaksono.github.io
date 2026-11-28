@@ -418,6 +418,72 @@ content:
     - name: talk_mail
       label: 'Kontak: tombol email / email button'
       type: string
+    - name: cta
+      label: 'Kontak: kalimat isian / Contact: fill-in sentence'
+      type: object
+      description: 'Menggantikan teks & tombol kontak di atas pada halaman Inggris. / Replaces the contact text and buttons above on the English page.'
+      fields:
+      - name: sentence
+        label: 'Kalimat / Sentence'
+        type: string
+        description: 'Wajib berisi [name], [intent], [topic] dan [email]. / Must contain [name], [intent], [topic] and [email].'
+      - name: intent
+        label: 'Pilihan [intent] / [intent] options'
+        type: string
+        list: true
+      - name: topic
+        label: 'Pilihan [topic] / [topic] options'
+        type: string
+        list: true
+      - name: name_label
+        label: 'Label nama untuk pembaca layar / Name label (screen readers)'
+        type: string
+      - name: name_hint
+        label: 'Teks contoh nama / Name placeholder'
+        type: string
+      - name: intent_label
+        label: 'Label [intent] untuk pembaca layar / [intent] label (screen readers)'
+        type: string
+      - name: topic_label
+        label: 'Label [topic] untuk pembaca layar / [topic] label (screen readers)'
+        type: string
+      - name: email_label
+        label: 'Label email untuk pembaca layar / Email label (screen readers)'
+        type: string
+      - name: email_hint
+        label: 'Teks contoh email / Email placeholder'
+        type: string
+      - name: send
+        label: 'Tombol kirim / Send button'
+        type: string
+      - name: copy
+        label: 'Tombol salin / Copy button'
+        type: string
+      - name: copied
+        label: 'Pesan setelah disalin / After copying'
+        type: string
+        description: '{address} = alamat email / email address'
+      - name: copy_failed
+        label: 'Pesan jika gagal menyalin / If copying fails'
+        type: string
+        description: '{address} = alamat email / email address'
+      - name: direct
+        label: 'Baris email langsung / Direct email line'
+        type: string
+        description: '{address} = email, {linkedin} = tautan LinkedIn / LinkedIn link'
+      - name: subject
+        label: 'Subjek email / Email subject'
+        type: string
+        description: 'Boleh pakai / You can use {name}, {intent}, {topic}'
+      - name: name_error
+        label: 'Error: nama kosong / Name missing'
+        type: string
+      - name: email_error
+        label: 'Error: email kosong / Email missing'
+        type: string
+      - name: email_invalid
+        label: 'Error: email salah format / Email looks wrong'
+        type: string
   - name: cases
     label: Studi kasus / Case studies
     type: collection

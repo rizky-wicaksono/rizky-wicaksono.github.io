@@ -103,6 +103,8 @@ def load_home(lang):
             v = [(_s(x["number"]), _s(x["label"])) for x in v or []]
         elif k == "services":
             v = [(_s(x["icon"]), _s(x["title"]), _s(x["text"]), _s(x["case"])) for x in v or []]
+        elif k == "cta":  # the fill-in-the-blank contact sentence: text fields stay text, option lists stay lists
+            v = {f: [_s(x) for x in o or []] if isinstance(o, list) else _s(o) for f, o in (v or {}).items()}
         elif k == "notion_card":
             v = tuple(_s((v or {}).get(f)) for f in ("meta", "name", "teaser", "go"))
         elif isinstance(v, list):

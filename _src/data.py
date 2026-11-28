@@ -10,6 +10,7 @@ ROOT = os.path.abspath(sys.argv[1]) if len(sys.argv) > 1 else os.path.join(SRC_R
 STATIC = ["assets", "share-v2.png"]  # copied as-is from the repo root into the output folder
 BASE = "https://rizky-wicaksono.github.io"
 LINKEDIN = "https://www.linkedin.com/in/rizky-wicaksono"
+EMAIL = "rizky.wcaksono@gmail.com"
 NOTION = "https://rizkywcaksono.notion.site/Rizky-Wicaksono-Selected-Works-in-Communications-289a1011ab8a80149838f9cf12a1e07d"
 e = html.escape
 

@@ -86,6 +86,32 @@ talk_h2: Let’s talk
 talk_lead: For PR projects and collaborations, reach Rizky Wicaksono on LinkedIn or by email.
 talk_li: Message on LinkedIn
 talk_mail: Send an email
+cta:
+  sentence: Hi, I’m [name]. I’d like to [intent] [topic]. Reach me at [email].
+  intent:
+  - talk about
+  - hire you for
+  - collaborate on
+  - ask about
+  topic:
+  - PR tooling
+  - media monitoring
+  - something else
+  name_label: Your name
+  name_hint: your name
+  intent_label: What you’d like to do
+  topic_label: Topic
+  email_label: Your email address
+  email_hint: your email
+  send: Send message
+  copy: Copy message
+  copied: Copied. Paste it into an email to {address}.
+  copy_failed: Couldn’t copy automatically. Please write to {address}.
+  direct: Or write to me directly at {address}, or message me on {linkedin}.
+  subject: '{name} would like to {intent} {topic}'
+  name_error: Please add your name.
+  email_error: Please add your email so I can reply.
+  email_invalid: That email doesn’t look quite right. Mind checking it?
 hero_alt: Illustration of a person working on a laptop
 experience:
 - role: Communications Consultant
