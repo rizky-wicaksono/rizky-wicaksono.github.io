@@ -162,6 +162,7 @@ cta:
   email_hint: your email
   send: Send message
   copy: Copy message
+  opening: Opening your email app… Nothing opened? Tap Copy message and send it to {address}.
   copied: Copied. Paste it into an email to {address}.
   copy_failed: Couldn’t copy automatically. Please write to {address}.
   direct: Or write to me directly at {address}, or message me on {linkedin}.
