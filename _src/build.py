@@ -783,6 +783,8 @@ TOOL_ICONS = {  # 24px line icons, drawn in currentColor
     "pdf": '<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 14h6M9 17.5h4"/>',
     "video": '<rect x="3" y="5" width="18" height="14" rx="3"/><path d="m10 9 5 3-5 3z"/>',
     "audio": '<path d="M6.5 9v6M10 5v14M13.5 8v8M17 10.5v3"/>',
+    "notes": '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/>',
+    "check": '<path d="M4 12.5 9 17.5 20 6.5"/>',
 }
 
 
@@ -970,6 +972,8 @@ for a in arts("en", tool=False):
 
 pairs = [(home_file("en"), home_file("id")), (tools_file("en"), tools_file("id")), (guides_file("en"), guides_file("id"))] + [(article_file(a, "en"), article_file(a, "id")) for a in ARTICLES if all(l in a for l in LANGS)]
 single = [f"/work/{c['slug']}/index.html" for c in CASES] + [article_file(a, l) for a in ARTICLES if not all(x in a for x in LANGS) for l in LANGS if l in a]
+# tools that live in this repo (a folder copied by STATIC, e.g. /meeting-minutes/) get their own sitemap entry
+single += [t["url"] + "index.html" for t in TOOLS if t["url"].startswith("/") and os.path.isdir(os.path.join(SRC_ROOT, t["url"].strip("/")))]
 def url_entry(file, alt=None):
     s = f"  <url><loc>{public(file)}</loc><lastmod>2026-11-25</lastmod>"
     if alt:

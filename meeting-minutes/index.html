@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'self'">
+<title>Meeting Minutes Maker: turn a transcript into minutes or a contact report</title>
+<meta name="description" content="Paste a meeting transcript and turn it into minutes of meeting or a client contact report, with agenda, decisions and action items. Runs in your browser; nothing is uploaded.">
+<meta name="author" content="Rizky Wicaksono">
+<link rel="canonical" href="https://rizky-wicaksono.github.io/meeting-minutes/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Rizky Wicaksono">
+<meta property="og:title" content="Meeting Minutes Maker">
+<meta property="og:description" content="Turn a meeting transcript into minutes or a contact report, with decisions and action items. Free, and nothing is uploaded.">
+<meta property="og:url" content="https://rizky-wicaksono.github.io/meeting-minutes/">
+<meta property="og:image" content="https://rizky-wicaksono.github.io/share-v2.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="theme.css">
+<meta name="theme-color" content="#0a0a0a">
+<style>
+.hero-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 18px; }
+.hero-top .crumb { margin: 0; }
+.langs { display: inline-flex; border: 1px solid #3a3a3a; border-radius: 999px; padding: 3px; }
+.langs button { font: inherit; font-size: 13px; font-weight: 800; color: #d8d8d3; background: transparent; border: 0; border-radius: 999px; padding: 5px 12px; cursor: pointer; }
+.langs button[aria-pressed="true"] { background: var(--cta); color: var(--cta-ink); }
+main.wrap { display: grid; gap: 22px; margin-top: 28px; }
+.panel { background: var(--surface); border: 1px solid var(--line); }
+.panel > h2 { margin: 0 0 14px; text-transform: uppercase; }
+.panel > h2 .n { color: var(--accent); margin-right: 6px; }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.row + .row, .row + textarea, textarea + .row { margin-top: 12px; }
+label.field { display: grid; gap: 5px; font-weight: 700; font-size: 14px; }
+label.field small { font-weight: 500; color: var(--muted); }
+input[type=text], input[type=date], select, textarea {
+  font: inherit; font-size: 15px; color: var(--fg); background: var(--paper, #fff); border: 1px solid var(--line); border-radius: var(--radius); padding: 9px 11px; width: 100%; min-width: 0;
+}
+:root[data-theme="dark"] input, :root[data-theme="dark"] select, :root[data-theme="dark"] textarea { background: var(--sunk); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) input, :root:not([data-theme="light"]) select, :root:not([data-theme="light"]) textarea { background: var(--sunk); } }
+select { width: auto; }
+textarea { resize: vertical; line-height: 1.5; }
+#transcript { min-height: 220px; font-size: 14px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+.filebtn { position: relative; overflow: hidden; }
+.filebtn input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.filebtn:focus-within { outline: 3px solid var(--focus); outline-offset: 3px; }
+.info { margin: 10px 0 0; font-size: 14px; color: var(--muted); }
+.info b { color: var(--fg); }
+.dropping { outline: 3px dashed var(--accent); outline-offset: 2px; }
+.form { display: grid; gap: 14px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.form .wide { grid-column: 1 / -1; }
+.workarea { display: grid; gap: 22px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; }
+.callout { background: var(--info-soft); color: var(--fg); padding: 10px 14px; font-size: 14px; margin: 0 0 14px; border-left: 4px solid var(--accent); }
+.filters { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.chip { font: inherit; font-size: 13px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); border-radius: 999px; padding: 5px 12px; cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--fg); color: var(--surface); border-color: var(--fg); }
+.chip .c { opacity: .7; margin-left: 4px; }
+.check { display: inline-flex; gap: 8px; align-items: center; font-size: 14px; font-weight: 600; cursor: pointer; }
+.check input { width: 18px; height: 18px; accent-color: var(--accent); }
+#cands { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; max-height: 78vh; overflow: auto; padding-right: 4px; }
+.cand { border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 12px; background: var(--surface); }
+.cand[draggable="true"] { cursor: grab; }
+.cand.added { opacity: .6; }
+.cand .meta { display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: center; font-size: 13px; color: var(--muted); }
+.cand .meta b { color: var(--fg); }
+.ts { font-variant-numeric: tabular-nums; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; background: var(--sunk); border-radius: 4px; padding: 1px 5px; color: var(--fg); }
+.tag { font-size: 11px; text-transform: uppercase; letter-spacing: .04em; padding: 1px 8px; }
+.t-action { background: #fde7c9; color: #6b3d00; }
+.t-decision { background: #d9f0e1; color: #155c32; }
+.t-agenda { background: #e3e8f7; color: #14307a; }
+.t-open { background: #f4dede; color: #8a1f17; }
+.t-date { background: var(--sunk); color: var(--fg); }
+.cand p { margin: 6px 0; font-size: 15px; line-height: 1.5; }
+mark { border-radius: 3px; padding: 0 2px; color: inherit; }
+mark.action { background: #ffe1b3; } mark.decision { background: #c8ecd5; } mark.agenda { background: #d6def6; } mark.open { background: #f6cccc; } mark.date { background: none; text-decoration: underline 2px; text-decoration-color: var(--accent); text-underline-offset: 3px; }
+:root[data-theme="dark"] mark.action, :root[data-theme="dark"] .t-action { background: #4a3210; color: #ffd9a6; }
+:root[data-theme="dark"] mark.decision, :root[data-theme="dark"] .t-decision { background: #173b25; color: #b9efcc; }
+:root[data-theme="dark"] mark.agenda, :root[data-theme="dark"] .t-agenda { background: #1c2a4d; color: #c9d6ff; }
+:root[data-theme="dark"] mark.open, :root[data-theme="dark"] .t-open { background: #4a1d1a; color: #ffc4be; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) mark.action, :root:not([data-theme="light"]) .t-action { background: #4a3210; color: #ffd9a6; }
+  :root:not([data-theme="light"]) mark.decision, :root:not([data-theme="light"]) .t-decision { background: #173b25; color: #b9efcc; }
+  :root:not([data-theme="light"]) mark.agenda, :root:not([data-theme="light"]) .t-agenda { background: #1c2a4d; color: #c9d6ff; }
+  :root:not([data-theme="light"]) mark.open, :root:not([data-theme="light"]) .t-open { background: #4a1d1a; color: #ffc4be; }
+}
+.sugg { font-size: 13px; color: var(--muted); }
+.sugg b { color: var(--fg); font-weight: 700; }
+.adds { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 13px; color: var(--muted); }
+.adds button { font: inherit; font-size: 13px; font-weight: 700; border: 1px solid var(--line); background: transparent; color: var(--fg); border-radius: 999px; padding: 4px 10px; cursor: pointer; }
+.adds button:hover { border-color: var(--fg); }
+.adds button.primary { background: var(--cta); border-color: var(--cta); color: var(--cta-ink); }
+.empty { color: var(--muted); font-size: 14px; margin: 0; }
+.sec { border: 1px solid var(--line); border-radius: var(--radius); padding: 12px; background: var(--surface); }
+.sec + .sec { margin-top: 12px; }
+.sec.over { outline: 3px dashed var(--accent); outline-offset: 2px; }
+.sec-head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.sec-head input { font-weight: 800; font-size: 16px; border-color: transparent; background: transparent !important; padding: 4px 6px; }
+.sec-head input:hover, .sec-head input:focus { border-color: var(--line); }
+.sec-head .count { font-size: 12px; font-weight: 800; color: var(--muted); background: var(--sunk); border-radius: 999px; padding: 2px 9px; }
+.items { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.item { display: grid; grid-template-columns: 18px minmax(0, 1fr) auto; gap: 6px; align-items: start; border-radius: 8px; padding: 6px; background: var(--sunk); }
+.item.dragging { opacity: .4; }
+.grip { cursor: grab; color: var(--muted); font-size: 14px; line-height: 2.3; user-select: none; text-align: center; }
+.item textarea { min-height: 40px; font-size: 14px; padding: 7px 9px; }
+.item .src { display: block; font-size: 12px; color: var(--muted); margin-top: 3px; }
+.act { display: grid; gap: 6px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.act textarea { grid-column: 1 / -1; }
+.act label { display: grid; gap: 2px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+.act label input { font-size: 14px; padding: 6px 9px; text-transform: none; letter-spacing: 0; font-weight: 500; }
+.ibtns { display: flex; flex-direction: column; gap: 2px; }
+.ibtns button { font: inherit; width: 30px; height: 28px; border: 1px solid transparent; background: transparent; color: var(--fg); border-radius: 6px; cursor: pointer; font-size: 14px; line-height: 1; }
+.ibtns button:hover { border-color: var(--line); background: var(--surface); }
+.ibtns button:disabled { opacity: .25; cursor: default; }
+.sec .btn.small { margin-top: 8px; }
+.pchips { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.pchips li { background: var(--sunk); border-radius: 999px; padding: 4px 12px; font-size: 14px; }
+.pchips button { font: inherit; font-size: 13px; border: 1px dashed var(--muted); background: transparent; color: var(--fg); border-radius: 999px; padding: 3px 10px; cursor: pointer; }
+.hint-small { font-size: 13px; color: var(--muted); margin: 8px 0 0; }
+.outbar { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; margin-bottom: 14px; }
+.outbar label { display: inline-flex; gap: 8px; align-items: center; font-weight: 700; font-size: 14px; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 6px 0 16px; }
+.actions .btn { width: auto; }
+.status { font-size: 14px; color: var(--ok); min-height: 1.4em; margin: 0; }
+.doc { background: #fff; color: #111; border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(18px, 4vw, 40px); font-family: Arial, Helvetica, sans-serif; font-size: 15px; line-height: 1.5; overflow-x: auto; }
+.doc .kicker { text-transform: uppercase; color: #14307a; font-weight: 700; font-size: 13px; letter-spacing: .05em; margin: 0; }
+.doc h1 { font-size: 26px; margin: 2px 0 14px; line-height: 1.2; }
+.doc h2 { font-size: 17px; border-bottom: 1.5px solid #0a0a0a; padding-bottom: 3px; margin: 22px 0 8px; }
+.doc p.m { margin: 0 0 3px; }
+.doc ul, .doc ol { margin: 0; padding-left: 22px; }
+.doc li { margin-bottom: 4px; }
+.doc .note { color: #6b6b6b; font-style: italic; font-size: 12.5px; }
+.doc table { border-collapse: collapse; width: 100%; font-size: 14px; }
+.doc th, .doc td { border: 1px solid #a6a6a6; padding: 5px 8px; text-align: left; vertical-align: top; }
+.doc th { background: #e7e6e2; }
+.doc .closing { font-style: italic; color: #404040; margin-top: 24px; }
+.doc .placeholder { color: #8a8a8a; }
+.privacy p { margin: 0 0 10px; max-width: 70ch; }
+.privacy .actions .btn.danger { border-color: var(--danger); color: var(--danger); background: transparent; }
+.guide { font-size: 15px; }
+.guide a { font-weight: 700; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+@media (max-width: 960px) { .workarea { grid-template-columns: 1fr; } #cands { max-height: 60vh; } }
+@media (max-width: 600px) {
+  .form { grid-template-columns: 1fr; }
+  .act { grid-template-columns: 1fr; }
+  .actions .btn { flex: 1 1 100%; }
+  main.wrap { gap: 16px; margin-top: 20px; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main" data-i="skip">Skip to the tool</a>
+<header class="sitebar"><div class="wrap">
+  <a class="brand" href="https://rizky-wicaksono.github.io/" data-href="home"><i aria-hidden="true"></i>Rizky Wicaksono</a>
+  <nav aria-label="Main"><ul>
+    <li><a href="https://rizky-wicaksono.github.io/tools/" data-href="tools" data-i="navTools">Tools</a></li>
+    <li><a href="https://rizky-wicaksono.github.io/#work" data-href="work" data-i="navWork">Work</a></li>
+    <li><a href="https://rizky-wicaksono.github.io/guides/" data-href="guides" data-i="navGuides">PR Guides</a></li>
+    <li><a href="https://rizky-wicaksono.github.io/#contact" data-href="contact" data-i="navContact">Contact</a></li>
+  </ul></nav>
+</div></header>
+<div class="hero"><div class="wrap">
+  <div class="hero-top">
+    <a class="crumb" href="https://rizky-wicaksono.github.io/tools/" data-href="tools" data-i="crumb">← All tools</a>
+    <div class="langs" role="group" aria-label="Language / Bahasa">
+      <button type="button" data-ui-lang="id" aria-pressed="false" lang="id">ID</button>
+      <button type="button" data-ui-lang="en" aria-pressed="true" lang="en">EN</button>
+    </div>
+  </div>
+  <h1 data-i="h1">Meeting Minutes Maker</h1>
+  <p class="lead" data-i="lead">Turn a meeting transcript into minutes or a client contact report: agenda, discussion, decisions and action items. You pick what goes in; the tool only suggests.</p>
+  <ul class="trust">
+    <li data-i="trust1">Free, no sign-up</li><li data-i="trust2">Nothing is uploaded</li><li data-i="trust3">No AI: simple word rules you can check</li>
+  </ul>
+</div></div>
+<noscript><p class="wrap" style="margin-top:20px">This tool needs JavaScript. / Alat ini butuh JavaScript.</p></noscript>
+
+<main id="main" class="wrap">
+  <section class="panel" aria-labelledby="h-transcript">
+    <h2 id="h-transcript"><span class="n">1</span><span data-i="sTranscript">Transcript</span></h2>
+    <div class="row">
+      <span class="btn small ghost filebtn"><span data-i="loadFile">Open .txt / .srt / .vtt file</span><input type="file" id="file" accept=".txt,.srt,.vtt,.md,text/plain,text/vtt" aria-label="Open transcript file"></span>
+      <label class="sr-only" for="sample" data-i="sampleLabel">Load a sample transcript</label>
+      <select id="sample">
+        <option value="" data-i="sampleNone">Try a sample transcript…</option>
+        <option value="id" data-i="sampleId">Sample: Indonesian, [00:00 - 00:13] style</option>
+        <option value="en" data-i="sampleEn">Sample: English, SRT subtitles</option>
+        <option value="mixed" data-i="sampleMixed">Sample: mixed, Google Meet style</option>
+      </select>
+    </div>
+    <label class="sr-only" for="transcript" data-i="transcriptLabel">Transcript text</label>
+    <textarea id="transcript" spellcheck="false" data-i-ph="transcriptPh" placeholder="Paste the transcript here, or drop a .txt, .srt or .vtt file on this box."></textarea>
+    <p class="info" id="parseInfo" aria-live="polite"></p>
+  </section>
+
+  <section class="panel" aria-labelledby="h-details">
+    <h2 id="h-details"><span class="n">2</span><span data-i="sDetails">Meeting details</span></h2>
+    <div class="form">
+      <label class="field wide"><span data-i="fTitle">Meeting title</span><input type="text" id="m-title" data-i-ph="fTitlePh" placeholder="e.g. Media briefing preparation"></label>
+      <label class="field"><span data-i="fDate">Date</span><input type="date" id="m-date"></label>
+      <label class="field"><span data-i="fType">Document type</span>
+        <select id="m-type"><option value="mom" data-i="typeMom">Minutes of meeting</option><option value="contact" data-i="typeContact">Contact report</option></select></label>
+      <label class="field"><span data-i="fClient">Client / organisation</span><input type="text" id="m-client"></label>
+      <label class="field"><span data-i="fLocation">Location / platform</span><input type="text" id="m-location" data-i-ph="fLocationPh" placeholder="e.g. Zoom, client office"></label>
+      <label class="field"><span data-i="fParticipants">Participants</span><small data-i="fParticipantsHint">One per line, or separated by commas.</small><textarea id="m-participants" rows="4"></textarea></label>
+      <label class="field"><span data-i="fPrepared">Prepared by</span><input type="text" id="m-prepared"></label>
+      <label class="field wide"><span data-i="fClosing">Closing note (optional)</span><small data-i="fClosingHint">Common in contact reports: ask the other side to flag anything that differs from their notes.</small>
+        <textarea id="m-closing" rows="2"></textarea>
+        <span><button type="button" class="btn small ghost" id="closingDefault" data-i="closingBtn">Use the standard line</button></span></label>
+    </div>
+  </section>
+
+  <div class="workarea">
+    <section class="panel" aria-labelledby="h-cands">
+      <h2 id="h-cands"><span class="n">3</span><span data-i="sCands">Suggestions from the transcript</span></h2>
+      <p class="callout" data-i="semiAuto">Semi-automatic. These lines were picked by simple word rules (like “deadline”, “disepakati”, “tolong”, a day or a date), not by AI. They will miss things and flag things that are not tasks. Check every line against the recording before you send the minutes.</p>
+      <div class="filters" role="group" aria-label="Filter" id="filters"></div>
+      <label class="check"><input type="checkbox" id="showAll"><span data-i="showAll">Show every line (to add discussion points)</span></label>
+      <ul id="cands" aria-live="polite"></ul>
+    </section>
+    <section class="panel" aria-labelledby="h-secs">
+      <h2 id="h-secs"><span class="n">4</span><span data-i="sSections">Minutes</span></h2>
+      <p class="hint-small" data-i="secHint" style="margin:0 0 12px">Drag suggestions here, or use the Add buttons. Edit any text. Section titles can be renamed to match your template.</p>
+      <div id="sections"></div>
+    </section>
+  </div>
+
+  <section class="panel" aria-labelledby="h-out">
+    <h2 id="h-out"><span class="n">5</span><span data-i="sOutput">Preview and export</span></h2>
+    <div class="outbar">
+      <label><span data-i="outLang">Output language</span>
+        <select id="outLang"><option value="id">Bahasa Indonesia</option><option value="en">English</option></select></label>
+      <label class="check"><input type="checkbox" id="incSrc"><span data-i="incSrc">Include source time and speaker</span></label>
+      <button type="button" class="btn small ghost" id="resetTitles" data-i="resetTitles">Reset section titles</button>
+    </div>
+    <div class="actions">
+      <button type="button" class="btn" id="copy" data-i="copy">Copy text</button>
+      <button type="button" class="btn ghost" id="dlMd" data-i="dlMd">Download .md</button>
+      <button type="button" class="btn ghost" id="dlDocx" data-i="dlDocx">Download .docx (Word)</button>
+    </div>
+    <p class="status" id="outStatus" role="status"></p>
+    <div class="doc" id="preview" aria-label="Preview"></div>
+  </section>
+
+  <section class="panel privacy" aria-labelledby="h-priv">
+    <h2 id="h-priv" data-i="sPrivacy">Privacy</h2>
+    <p data-i="priv1">Everything happens in this browser tab. The transcript is not uploaded, and this page makes no network requests while you work. Close the tab and it is gone.</p>
+    <p data-i="priv2">Nothing is saved unless you click “Save draft in this browser”. That keeps one draft in this browser’s local storage on this device only, until you clear it. Do not use it on a shared computer.</p>
+    <div class="actions">
+      <button type="button" class="btn small ghost" id="saveDraft" data-i="saveDraft">Save draft in this browser</button>
+      <button type="button" class="btn small ghost" id="loadDraft" data-i="loadDraft" hidden>Restore saved draft</button>
+      <button type="button" class="btn small ghost danger" id="clearAll" data-i="clearAll">Clear everything</button>
+    </div>
+    <p class="status" id="draftStatus" role="status"></p>
+  </section>
+
+  <p class="guide"><span data-i="guideLead">How to write minutes people can trust, and why the recording still matters:</span> <a id="guideLink" href="https://rizky-wicaksono.github.io/guides/how-to-write-meeting-minutes-from-a-transcript/" data-i="guideLink">read the guide</a></p>
+</main>
+
+<footer class="sitefoot"><div class="wrap">
+  <p data-i="foot">Meeting Minutes Maker is made by Rizky Wicaksono, public relations engineer. Free to use. Your transcript never leaves this browser.</p>
+  <ul>
+    <li><a href="https://rizky-wicaksono.github.io/tools/" data-href="tools" data-i="footTools">All tools</a></li>
+    <li><a href="https://rizky-wicaksono.github.io/" data-href="home" data-i="footHome">Portfolio</a></li>
+    <li><a href="https://github.com/rizky-wicaksono/rizky-wicaksono.github.io/tree/main/meeting-minutes" data-i="footSrc">Source on GitHub</a></li>
+  </ul>
+</div></footer>
+
+<datalist id="names"></datalist>
+<script src="parse.js"></script>
+<script src="samples.js"></script>
+<script src="docx.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

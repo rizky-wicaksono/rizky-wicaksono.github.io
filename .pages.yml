@@ -623,7 +623,7 @@ content:
       - name: icons
         label: Ikon / Icons
         type: string
-        description: 'Pilih dari: pdf, video, audio. / Choose from: pdf, video, audio.'
+        description: 'Pilih dari: pdf, video, audio, notes, check. / Choose from: pdf, video, audio, notes, check.'
         list: true
       - name: guides
         label: Tautan panduan / Guide links
@@ -772,7 +772,7 @@ content:
             label: Tool link
             type: string
           - name: kind
-            label: Kind (pdf, video or audio)
+            label: Kind (pdf, video, audio or notes)
             type: string
           - name: pitch
             label: One-line pitch
@@ -891,7 +891,7 @@ content:
             label: Tool link
             type: string
           - name: kind
-            label: Kind (pdf, video or audio)
+            label: Kind (pdf, video, audio or notes)
             type: string
           - name: pitch
             label: One-line pitch

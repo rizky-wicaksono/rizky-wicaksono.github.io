@@ -7,7 +7,7 @@ from content import load_cases, load_home
 SRC_ROOT = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))  # the repo root
 # Output folder: first command-line argument, else _site/ in the repo root.
 ROOT = os.path.abspath(sys.argv[1]) if len(sys.argv) > 1 else os.path.join(SRC_ROOT, "_site")
-STATIC = ["assets", "share-v2.png"]  # copied as-is from the repo root into the output folder
+STATIC = ["assets", "share-v2.png", "meeting-minutes"]  # meeting-minutes/ is the Meeting Minutes Maker tool, served at /meeting-minutes/  # copied as-is from the repo root into the output folder
 BASE = "https://rizky-wicaksono.github.io"
 LINKEDIN = "https://www.linkedin.com/in/rizky-wicaksono"
 EMAIL = "rizky.wcaksono@gmail.com"
