@@ -82,7 +82,7 @@ p { margin:0 0 16px; }
 .clients-view { flex:1; min-width:0; overflow:hidden; -webkit-mask-image:linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image:linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
 .clients-track { display:flex; width:max-content; background:var(--soft); animation:clients-scroll var(--clients-dur, 40s) linear infinite; }
 .clients-track ul { display:flex; align-items:center; gap:56px; list-style:none; margin:0; padding:0 28px; }
-.clients-track img { display:block; height:32px; width:auto; max-width:132px; object-fit:contain; filter:grayscale(1); mix-blend-mode:multiply; opacity:.72; transition:filter .25s, opacity .25s; }
+.clients-track img { display:block; height:32px; width:auto; max-width:none; object-fit:contain; filter:grayscale(1); mix-blend-mode:multiply; opacity:.72; transition:filter .25s, opacity .25s; }
 .clients-track li:hover img { filter:none; opacity:1; }
 .clients-view:hover .clients-track, .clients.paused .clients-track { animation-play-state:paused; }
 @keyframes clients-scroll { to { transform:translateX(-50%); } }
@@ -306,10 +306,8 @@ button.btn { font:inherit; font-weight:800; font-size:16px; line-height:inherit;
 @keyframes rise { from { opacity:0; translate:0 18px; } to { opacity:1; translate:0 0; } }
 @media (prefers-reduced-motion: reduce) {
   * { transition:none !important; scroll-behavior:auto !important; }
-  .clients-track { animation:none; width:auto; }
-  .clients-track ul { flex-wrap:wrap; justify-content:center; gap:20px 40px; }
+  .clients-track { animation:none; }
   .clients-track ul[aria-hidden], .clients-toggle { display:none; }
-  .clients-view { -webkit-mask-image:none; mask-image:none; }
 }
 /* cross-fade between pages in browsers that support it; skipped for people who prefer less motion */
 @media (prefers-reduced-motion: no-preference) { @view-transition { navigation:auto; } }
@@ -641,12 +639,20 @@ def clients_strip(lang, pre):
     if not CLIENTS:
         return ""
     label = CLIENT_LABELS.get(lang) or CLIENT_LABELS.get("en") or ""
-    items = "".join(f'<li><img src="{pre}{e(src)}" alt="{e(name)}"{img_size(src)} loading="lazy"></li>' for name, src in CLIENTS)
-    copy = "".join(f'<li><img src="{pre}{e(src)}" alt=""{img_size(src)} loading="lazy"></li>' for name, src in CLIENTS)
+    def img(name, src, alt):
+        size = img_size(src)
+        style = ""
+        m = re.search(r'width="(\d+)" height="(\d+)"', size)
+        if m:  # give every logo about the same visual area, so wide wordmarks and square marks look equally weighted
+            ratio = int(m.group(1)) / int(m.group(2))
+            style = f' style="height:{min(40, max(22, round((3600 / ratio) ** 0.5)))}px"'
+        return f'<li><img src="{pre}{e(src)}" alt="{e(alt)}"{size}{style} loading="lazy"></li>'
+    items = "".join(img(name, src, name) for name, src in CLIENTS)
+    copy = "".join(img(name, src, "") for name, src in CLIENTS)
     pause = "Jeda logo" if lang == "id" else "Pause logos"
     return f"""<section class="clients" aria-label="{e(label)}"><div class="wrap">
   <p class="clients-label" aria-hidden="true">{e(label)}</p>
-  <div class="clients-view"><div class="clients-track" style="--clients-dur:{max(24, len(CLIENTS) * 6)}s">
+  <div class="clients-view"><div class="clients-track" style="--clients-dur:{max(24, len(CLIENTS) * 5)}s">
     <ul>{items}</ul><ul aria-hidden="true">{copy}</ul>
   </div></div>
   <button class="clients-toggle" type="button" aria-pressed="false" aria-label="{pause}"><svg class="pause" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 2h3v10H3zM8 2h3v10H8z" fill="currentColor"/></svg><svg class="play" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 1.5v11l9-5.5z" fill="currentColor"/></svg></button>
