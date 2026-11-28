@@ -14,7 +14,9 @@
     var f = { name: form.elements.name, intent: form.elements.intent, topic: form.elements.topic, email: form.elements.email };
     var status = form.querySelector(".fill-status");
     var copyBtn = form.querySelector("[data-copy]");
-    // Hidden twin of the blanks' text, used to measure how wide each blank should be.
+    // Browsers with CSS field-sizing size each blank to its text themselves (see .blank in the CSS).
+    // The rest get a hidden twin of the blanks' text, used to measure how wide each blank should be.
+    var cssSizing = window.CSS && CSS.supports && CSS.supports("field-sizing", "content");
     var ruler = document.createElement("span");
     ruler.setAttribute("aria-hidden", "true");
     ruler.style.cssText = "position:absolute;visibility:hidden;white-space:pre;left:-9999px;top:0";
@@ -22,6 +24,7 @@
 
     // Size a blank to its value (or placeholder) so the sentence reads like a sentence.
     function fit(el) {
+      if (cssSizing) return;
       var cs = getComputedStyle(el);
       ruler.style.font = cs.font;
       ruler.style.letterSpacing = cs.letterSpacing;
@@ -36,9 +39,11 @@
         if (f[k].getAttribute("aria-invalid")) check(true);
       });
     });
-    fitAll();
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitAll);
-    window.addEventListener("resize", fitAll);
+    if (!cssSizing) {
+      fitAll();
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitAll);
+      window.addEventListener("resize", fitAll);
+    }
 
     function say(text, ok) { status.textContent = text; status.classList.toggle("ok", !!ok); }
 
