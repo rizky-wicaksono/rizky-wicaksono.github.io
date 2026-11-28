@@ -1,10 +1,13 @@
-# Home page text (English). Edited with Pages CMS; read by _src/content.py.
-title: 'Rizky Wicaksono: public relations consultant in Jakarta'
-desc: 'Public relations consultant in Jakarta: media relations, marketing communications and brand storytelling. Now handling Netflix, Suzuki and Shell Indonesia.'
+title: "Rizky Wicaksono: public relations consultant in Jakarta"
+desc: "Public relations consultant in Jakarta: media relations, marketing
+  communications and brand storytelling. Now handling Netflix, Suzuki and Shell
+  Indonesia."
 h1: Public relations consultant in Jakarta
-lead: Rizky Wicaksono helps brands in any industry with media relations, integrated marketing communications and brand storytelling.
+lead: Rizky Wicaksono helps brands in any industry with media relations,
+  integrated marketing communications and brand storytelling.
 btn_cta: Plan your next campaign
 btn_work: See selected work
+hero_alt: Illustration of a person working on a laptop
 about_label: About
 about_h2: Hey there, I’m Rizky Wicaksono.
 stat_years_value: 5+
@@ -12,66 +15,89 @@ stat_years: Years in public relations
 stat_clients_value: 22+
 stat_clients: Client accounts handled
 about_p:
-- A storyteller at heart and a strategist by trade, I’ve spent 5+ years helping brands grow their voice through <strong>Public Relations</strong> and <strong>Marketing Communications</strong>.
-- I specialize in connecting brands with their audiences through <strong>media relations, brand storytelling, and integrated campaigns</strong> that make people stop, read, and remember.
-- Right now I’m handling Netflix Indonesia, Suzuki Indonesia and Shell Indonesia. Past work spans entertainment, technology, automotive, transportation, manufacturing, retail, consumer, and corporate, and I’m open to any industry.
+  - A storyteller at heart and a strategist by trade, I’ve spent 5+ years
+    helping brands grow their voice through <strong>Public Relations</strong>
+    and <strong>Marketing Communications</strong>.
+  - I specialize in connecting brands with their audiences through <strong>media
+    relations, brand storytelling, and integrated campaigns</strong> that make
+    people stop, read, and remember.
+  - Right now I’m handling Netflix Indonesia, Suzuki Indonesia and Shell
+    Indonesia. Past work spans entertainment, technology, automotive,
+    transportation, manufacturing, retail, consumer, and corporate, and I’m open
+    to any industry.
 mc_label: Marketing communications
 mc_h2: One plan across PR, social, brand and web
-mc_lead: At JAFF Market, Indonesia’s first film market, Rizky Wicaksono led integrated marketing communications across public relations, social media, branding, website and documentation, with 36 core team members and 26 volunteers.
+mc_lead: At JAFF Market, Indonesia’s first film market, Rizky Wicaksono led
+  integrated marketing communications across public relations, social media,
+  branding, website and documentation, with 36 core team members and 26
+  volunteers.
 mc_btn: Read the JAFF Market case
 mc_stats:
-- number: '663'
-  label: Media coverages
-- number: 8.5M
-  label: Social media views
-- number: 68K+
-  label: Unique website visitors
-- number: 8.8K
-  label: New Instagram followers
-- number: 1.2M
-  label: Social media reach
-- number: '62'
-  label: 'People led: 36 core team and 26 volunteers'
+  - number: "663"
+    label: Media coverages
+  - number: 8.5M
+    label: Social media views
+  - number: 68K+
+    label: Unique website visitors
+  - number: 8.8K
+    label: New Instagram followers
+  - number: 1.2M
+    label: Social media reach
+  - number: "62"
+    label: "People led: 36 core team and 26 volunteers"
 eng_label: Public relations engineering
 eng_h2: PR that learns to build with AI
-eng_chip: 'Try the first tool: File Shrinker'
+eng_chip: "Try the first tool: File Shrinker"
 eng_p:
-- I can’t code, and I’m not claiming to. What I do have is enough curiosity and skill to understand how things are built, learn more, and try, with AI doing the heavy lifting.
-- 'I’m working toward a role marketing already has and PR doesn’t yet: the <strong>public relations engineer</strong>. The goal is simple: use AI to cut the repetitive parts of PR, such as media monitoring, first drafts, list-building and reporting, so more time goes to strategy and relationships.'
+  - I can’t code, and I’m not claiming to. What I do have is enough curiosity
+    and skill to understand how things are built, learn more, and try, with AI
+    doing the heavy lifting.
+  - "I’m working toward a role marketing already has and PR doesn’t yet: the
+    <strong>public relations engineer</strong>. The goal is simple: use AI to
+    cut the repetitive parts of PR, such as media monitoring, first drafts,
+    list-building and reporting, so more time goes to strategy and
+    relationships."
 eng_list:
-- Learning how AI tools and code work, enough to understand and try them
-- Turning my PR playbooks into small, reusable tools, with AI’s help
-- Writing about what works and what doesn’t
-eng_end: Open to collaborations on PR and AI, speaking, and comms teams that want to automate the boring parts.
+  - Learning how AI tools and code work, enough to understand and try them
+  - Turning my PR playbooks into small, reusable tools, with AI’s help
+  - Writing about what works and what doesn’t
+eng_end: Open to collaborations on PR and AI, speaking, and comms teams that
+  want to automate the boring parts.
 services_h2: What I do
-see: 'See '
+see: "See "
 services:
-- icon: marcomm
-  title: Integrated marketing communications
-  text: PR, social media, branding, website and documentation run as one plan. At JAFF Market that plan reached 8.5M social views and 68K+ website visitors.
-  case: jaff-market
-- icon: media
-  title: Media relations
-  text: Press releases, interviews and media partnerships. DAIKIN’s launch earned 334+ coverages, and JAFF Market’s 663 came from 9 press releases and 13 interviews.
-  case: daikin-indonesia
-- icon: story
-  title: Brand storytelling
-  text: Brand refreshes told through the consumer brands people already know, like Guardian and IKEA for DFI Retail.
-  case: dfi-retail-nusantara
-- icon: corp
-  title: Corporate communications
-  text: Executive voice and stakeholder messaging for regulated companies, such as interviews and op-eds for CLIK.
-  case: crif-clik
-- icon: event
-  title: Launch and event communications
-  text: 'Press conferences and debut events: three for DAIKIN’s factory launch, and a youth orchestra’s first public concert.'
-  case: trinity-entertainment-group
-- icon: content
-  title: Content strategy
-  text: Annual social and content plans that make technical topics easy to read, like agricultural biotechnology for CropLife.
-  case: croplife-indonesia
+  - title: Integrated marketing communications
+    text: PR, social media, branding, website and documentation run as one plan. At
+      JAFF Market that plan reached 8.5M social views and 68K+ website visitors.
+    case: jaff-market
+    icon: marcomm
+  - title: Media relations
+    text: Press releases, interviews and media partnerships. DAIKIN’s launch earned
+      334+ coverages, and JAFF Market’s 663 came from 9 press releases and 13
+      interviews.
+    case: daikin-indonesia
+    icon: media
+  - title: Brand storytelling
+    text: Brand refreshes told through the consumer brands people already know, like
+      Guardian and IKEA for DFI Retail.
+    case: dfi-retail-nusantara
+    icon: story
+  - title: Corporate communications
+    text: Executive voice and stakeholder messaging for regulated companies, such as
+      interviews and op-eds for CLIK.
+    case: crif-clik
+    icon: corp
+  - title: Launch and event communications
+    text: "Press conferences and debut events: three for DAIKIN’s factory launch,
+      and a youth orchestra’s first public concert."
+    case: trinity-entertainment-group
+    icon: event
+  - title: Content strategy
+    text: Annual social and content plans that make technical topics easy to read,
+      like agricultural biotechnology for CropLife.
+    case: croplife-indonesia
+    icon: content
 work_h2: Selected work
-work_note: ''
 case_go: Read case study
 notion_card:
   meta: Notion
@@ -79,24 +105,55 @@ notion_card:
   teaser: Every project in one place.
   go: Open on Notion
 exp_h2: Experience
+experience:
+  - role: Communications Consultant
+    where: Image Dynamics PR · Netflix Indonesia
+    when: Mar 2026 to now
+  - role: Public Relations Consultant
+    where: Image Dynamics PR · Suzuki Indonesia
+    when: Jan 2026 to now
+  - role: Public Relations Consultant
+    where: Image Dynamics PR · Shell Indonesia
+    when: Now
+  - role: Marketing Communications Assistant Manager
+    where: JAFF Market
+    when: Jun 2025 to Jan 2026
+  - role: Senior Public Relations Consultant
+    where: Dialogue Communications
+    when: Jul 2024 to Jan 2026
+  - role: Junior Public Relations Consultant
+    where: Dialogue Communications
+    when: Jan 2023 to Jun 2024
+  - role: Corporate Communications Intern
+    where: PT Moda Integrasi Transportasi Jabodetabek
+    when: Nov 2022 to Jan 2023
+  - role: Public Relations Intern
+    where: Lifepal
+    when: Jun to Oct 2022
+  - role: Public Relations Intern
+    where: Thamrin Group
+    when: Jun to Jul 2021
 edu: Bachelor of Arts in Communication, Universitas Sriwijaya.
 guides_h2: PR Guides
 guides_all: See all guides
 talk_h2: Let’s talk
-talk_lead: For PR projects and collaborations, reach Rizky Wicaksono on LinkedIn or by email.
+talk_lead: For PR projects and collaborations, reach Rizky Wicaksono on LinkedIn
+  or by email.
 talk_li: Message on LinkedIn
 talk_mail: Send an email
 cta:
   sentence: Hi, I’m [name]. I’d like to [intent] [topic]. Reach me at [email].
   intent:
-  - talk about
-  - hire you for
-  - collaborate on
-  - ask about
+    - hire you for
+    - work with you on
+    - collaborate on
+    - ask about
   topic:
-  - PR tooling
-  - media monitoring
-  - something else
+    - a PR role
+    - AI tools for PR
+    - a speaking opportunity
+    - a brand or product launch
+    - something else
   name_label: Your name
   name_hint: your name
   intent_label: What you’d like to do
@@ -108,36 +165,7 @@ cta:
   copied: Copied. Paste it into an email to {address}.
   copy_failed: Couldn’t copy automatically. Please write to {address}.
   direct: Or write to me directly at {address}, or message me on {linkedin}.
-  subject: '{name} would like to {intent} {topic}'
+  subject: "{name} would like to {intent} {topic}"
   name_error: Please add your name.
   email_error: Please add your email so I can reply.
   email_invalid: That email doesn’t look quite right. Mind checking it?
-hero_alt: Illustration of a person working on a laptop
-experience:
-- role: Communications Consultant
-  where: Image Dynamics PR · Netflix Indonesia
-  when: Mar 2026 to now
-- role: Public Relations Consultant
-  where: Image Dynamics PR · Suzuki Indonesia
-  when: Jan 2026 to now
-- role: Public Relations Consultant
-  where: Image Dynamics PR · Shell Indonesia
-  when: Now
-- role: Marketing Communications Assistant Manager
-  where: JAFF Market
-  when: Jun 2025 to Jan 2026
-- role: Senior Public Relations Consultant
-  where: Dialogue Communications
-  when: Jul 2024 to Jan 2026
-- role: Junior Public Relations Consultant
-  where: Dialogue Communications
-  when: Jan 2023 to Jun 2024
-- role: Corporate Communications Intern
-  where: PT Moda Integrasi Transportasi Jabodetabek
-  when: Nov 2022 to Jan 2023
-- role: Public Relations Intern
-  where: Lifepal
-  when: Jun to Oct 2022
-- role: Public Relations Intern
-  where: Thamrin Group
-  when: Jun to Jul 2021
