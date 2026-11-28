@@ -459,6 +459,10 @@ content:
       - name: copy
         label: 'Tombol salin / Copy button'
         type: string
+      - name: opening
+        label: 'Pesan setelah tombol kirim / After the send button'
+        type: string
+        description: 'Muncul kalau aplikasi email tidak terbuka. {address} = alamat email / Shown in case no email app opens. {address} = email address'
       - name: copied
         label: 'Pesan setelah disalin / After copying'
         type: string

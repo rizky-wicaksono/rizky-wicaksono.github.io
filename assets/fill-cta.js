@@ -65,7 +65,8 @@
     form.addEventListener("submit", function (ev) {
       ev.preventDefault();
       if (!check(false)) return;
-      say("");
+      // mailto: does nothing visible when no email app is set up, so always say what should happen.
+      say(cfg.opening, true);
       count("send");
       window.location.href = "mailto:" + cfg.to + "?subject=" + encodeURIComponent(fill(cfg.subject, false)) + "&body=" + encodeURIComponent(message() + "\n");
     });
