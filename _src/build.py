@@ -196,6 +196,25 @@ a.cov:hover .hl { text-decoration:underline; text-decoration-color:var(--accent)
 .tags { display:flex; flex-wrap:wrap; gap:6px; list-style:none; margin:0 0 22px; padding:0; }
 .tags li { font-size:13px; font-weight:700; padding:3px 10px; border-radius:999px; background:var(--soft); color:#3b3b38; }
 .tool-card .btn { align-self:flex-start; margin-top:auto; }
+/* fill-in-the-blank contact sentence (fill_cta); sits on the blue band */
+.talk.blue { background:var(--accent); color:#fff; }
+.talk.blue :focus-visible { outline-color:#ffd24a; }
+.talk .fill-label { font-size:13px; line-height:1.4; letter-spacing:.14em; text-transform:uppercase; font-weight:700; color:var(--accent-d); margin:0 0 24px; }
+.fill-sentence { font-size:clamp(28px, 4.6vw, 56px); line-height:1.5; font-weight:700; letter-spacing:-0.025em; margin:0; max-width:1080px; }
+.blank { font:inherit; font-weight:600; letter-spacing:inherit; line-height:1.15; color:#fff; background:transparent; border:0; border-bottom:3px solid var(--accent-d); border-radius:0; margin:0; padding:0 .05em; min-width:3ch; max-width:100%; vertical-align:baseline; }
+.blank::placeholder { color:rgba(255,255,255,.62); opacity:1; }
+select.blank { -webkit-appearance:none; appearance:none; cursor:pointer; padding-right:.75em; background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 12'%3E%3Cpath d='M2 2l8 8 8-8' fill='none' stroke='%236cc4ff' stroke-width='3'/%3E%3C/svg%3E") no-repeat right 0 center / .48em auto; }
+select.blank option { color:var(--ink); background:#fff; font-size:17px; font-weight:500; }
+.blank[aria-invalid="true"] { border-bottom-color:#ffd24a; }
+.blank:focus-visible { outline:3px solid #ffd24a; outline-offset:4px; border-radius:2px; }
+.fill-status { min-height:1.65em; margin:20px 0 0; font-size:16px; font-weight:700; color:#ffd24a; }
+.fill-status.ok { color:#fff; }
+.fill-actions { display:flex; flex-wrap:wrap; align-items:center; gap:14px 16px; margin-top:12px; }
+button.btn { font:inherit; font-weight:800; font-size:16px; line-height:inherit; cursor:pointer; }
+.talk.blue .btn.ghost { border-color:rgba(255,255,255,.5); }
+.talk.blue .btn.ghost:hover { border-color:#fff; }
+.fill-direct { margin:28px 0 0; font-size:16px; color:rgba(255,255,255,.8); }
+.fill-direct a { color:#fff; font-weight:700; overflow-wrap:anywhere; }
 .sr { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
 .tools-more { margin-top:64px; padding-top:28px; border-top:2px solid var(--ink); max-width:720px; }
 .tools-more h2 { font-size:28px; margin-bottom:12px; }
@@ -478,6 +497,43 @@ def ld(obj):
     return '<script type="application/ld+json">\n' + json.dumps(obj, indent=2, ensure_ascii=False) + "\n</script>\n"
 
 
+def fill_cta(X, pre, sid="contact"):
+    """Fill-in-the-blank contact sentence ("Hi, I'm [name]. I'd like to [intent] [topic]. Reach me at [email].").
+    X is a `cta` block from the content files; the send button opens an email to EMAIL with the blanks filled in,
+    the copy button copies the same message. Behaviour is in assets/fill-cta.js. Reusable on any page."""
+    def control(key):
+        fid = f"{sid}-{key}"
+        if key in ("intent", "topic"):
+            opts = "".join(f'<option>{e(o)}</option>' for o in X[key])
+            return f'<label class="sr" for="{fid}">{e(X[key + "_label"])}</label><select class="blank" id="{fid}" name="{key}">{opts}</select>'
+        typ = 'type="email" autocomplete="email" inputmode="email" spellcheck="false"' if key == "email" else 'type="text" autocomplete="name"'
+        hint = X[key + "_hint"]
+        return (f'<label class="sr" for="{fid}">{e(X[key + "_label"])}</label>'
+                f'<input class="blank" id="{fid}" name="{key}" {typ} required placeholder="{e(hint)}" size="{len(hint) + 1}" aria-describedby="{sid}-status">')
+    for k in ("[name]", "[intent]", "[topic]", "[email]"):
+        if X["sentence"].count(k) != 1:
+            raise SystemExit(f"content: the contact sentence must contain {k} exactly once: {X['sentence']!r}")
+    for k in ("intent", "topic"):
+        if not X.get(k):
+            raise SystemExit(f"content: the contact sentence needs at least one {k} option")
+    parts = re.split(r"\[(name|intent|topic|email)\]", X["sentence"])
+    sentence = "".join(control(p) if i % 2 else e(p) for i, p in enumerate(parts))
+    direct = (e(X["direct"]).replace("{address}", f'<a href="mailto:{EMAIL}">{EMAIL}</a>')
+              .replace("{linkedin}", f'<a href="{LINKEDIN}" rel="me noopener">LinkedIn</a>'))
+    msgs = {k: X[k].replace("{address}", EMAIL) for k in ("copied", "copy_failed", "name_error", "email_error", "email_invalid")}
+    data = e(json.dumps({"to": EMAIL, "sentence": X["sentence"], "subject": X["subject"], **msgs}, ensure_ascii=False))
+    return f"""<form class="fill-cta" action="mailto:{EMAIL}" method="post" enctype="text/plain" novalidate data-cta="{data}">
+    <p class="fill-sentence">{sentence}</p>
+    <p class="fill-status" id="{sid}-status" role="status" aria-live="polite"></p>
+    <div class="fill-actions">
+      <button class="btn" type="submit">{e(X['send'])} <span aria-hidden="true">→</span></button>
+      <button class="btn ghost" type="button" data-copy hidden>{e(X['copy'])}</button>
+    </div>
+    <p class="fill-direct">{direct}</p>
+  </form>
+  <script src="{pre}assets/fill-cta.js" defer></script>"""
+
+
 def home(lang="en"):
     T = HOME[lang]
     C = CHROME[lang]
@@ -513,6 +569,20 @@ def home(lang="en"):
     eng_p = "\n".join(f"      <p>{p}</p>" for p in T["eng_p"])
     eng_li = "\n".join(f"        <li>{x}</li>" for x in T["eng_list"])
     about_p = "\n".join(f"      <p>{p}</p>" for p in T["about_p"])
+    if T.get("cta"):  # fill-in-the-blank contact sentence on the blue band
+        talk = f"""<section class="talk blue" id="contact"><div class="wrap">
+  <h2 class="fill-label">{T['talk_h2']}</h2>
+  {fill_cta(T['cta'], pre)}
+</div></section>"""
+    else:
+        talk = f"""<section class="talk dark" id="contact"><div class="wrap">
+  <h2>{T['talk_h2']}</h2>
+  <p class="lead">{T['talk_lead']}</p>
+  <div class="actions">
+    <a class="btn" href="{LINKEDIN}" rel="me noopener">{T['talk_li']}</a>
+    <a class="btn ghost" href="mailto:rizky.wcaksono@gmail.com">{T['talk_mail']}</a>
+  </div>
+</div></section>"""
     hero = f"""<main id="main">
 <section class="hero"><div class="wrap">
   <div>
@@ -602,14 +672,7 @@ def home(lang="en"):
   <p style="margin-top:24px"><a class="more" href="{rel(cur, guides_file(lang))}">{T['guides_all']}</a></p>
 </div></section>
 
-<section class="talk dark" id="contact"><div class="wrap">
-  <h2>{T['talk_h2']}</h2>
-  <p class="lead">{T['talk_lead']}</p>
-  <div class="actions">
-    <a class="btn" href="{LINKEDIN}" rel="me noopener">{T['talk_li']}</a>
-    <a class="btn ghost" href="mailto:rizky.wcaksono@gmail.com">{T['talk_mail']}</a>
-  </div>
-</div></section>
+{talk}
 </main>
 """
     extra = ld(PERSON) if lang == "en" else ""
