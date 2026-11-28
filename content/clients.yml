@@ -3,14 +3,34 @@
 label_en: Brands I've worked with
 label_id: Brand yang pernah saya tangani
 clients:
-- name: JAFF Market
-  logo: /assets/logos/jaff-market.png
+- name: Netflix Indonesia
+  logo: /assets/logos/netflix-indonesia.png
+- name: Suzuki Indonesia
+  logo: /assets/logos/suzuki-indonesia.png
+- name: Shell Indonesia
+  logo: /assets/logos/shell-indonesia.png
 - name: DAIKIN Indonesia
   logo: /assets/logos/daikin-indonesia.svg
-- name: PT DFI Retail Nusantara Tbk
-  logo: /assets/logos/dfi-retail-nusantara.svg
+- name: IKEA Indonesia
+  logo: /assets/logos/ikea-indonesia.png
 - name: Guardian Indonesia
   logo: /assets/logos/guardian-indonesia.png
+- name: PT DFI Retail Nusantara Tbk
+  logo: /assets/logos/dfi-retail-nusantara.svg
+- name: JAFF Market
+  logo: /assets/logos/jaff-market.png
+- name: Thamrin Group
+  logo: /assets/logos/thamrin-group.png
+- name: Lifepal
+  logo: /assets/logos/lifepal.png
+- name: Klinik Pintar
+  logo: /assets/logos/klinik-pintar.svg
+- name: Cita Tenun Indonesia
+  logo: /assets/logos/cita-tenun-indonesia.png
+- name: MITJ
+  logo: /assets/logos/mitj.png
+- name: Zinit
+  logo: /assets/logos/zinit.svg
 - name: Trinity Entertainment Group
   logo: /assets/logos/trinity-entertainment-group.png
 - name: PT CRIF Lembaga Informasi Keuangan (CLIK)
