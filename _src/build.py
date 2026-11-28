@@ -520,7 +520,7 @@ def fill_cta(X, pre, sid="contact"):
     sentence = "".join(control(p) if i % 2 else e(p) for i, p in enumerate(parts))
     direct = (e(X["direct"]).replace("{address}", f'<a href="mailto:{EMAIL}">{EMAIL}</a>')
               .replace("{linkedin}", f'<a href="{LINKEDIN}" rel="me noopener">LinkedIn</a>'))
-    msgs = {k: X[k].replace("{address}", EMAIL) for k in ("copied", "copy_failed", "name_error", "email_error", "email_invalid")}
+    msgs = {k: X[k].replace("{address}", EMAIL) for k in ("opening", "copied", "copy_failed", "name_error", "email_error", "email_invalid")}
     data = e(json.dumps({"to": EMAIL, "sentence": X["sentence"], "subject": X["subject"], **msgs}, ensure_ascii=False))
     return f"""<form class="fill-cta" action="mailto:{EMAIL}" method="post" enctype="text/plain" novalidate data-cta="{data}">
     <p class="fill-sentence">{sentence}</p>
