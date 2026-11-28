@@ -306,10 +306,8 @@ button.btn { font:inherit; font-weight:800; font-size:16px; line-height:inherit;
 @keyframes rise { from { opacity:0; translate:0 18px; } to { opacity:1; translate:0 0; } }
 @media (prefers-reduced-motion: reduce) {
   * { transition:none !important; scroll-behavior:auto !important; }
-  .clients-track { animation:none; width:auto; }
-  .clients-track ul { flex-wrap:wrap; justify-content:center; gap:20px 40px; }
+  .clients-track { animation:none; }
   .clients-track ul[aria-hidden], .clients-toggle { display:none; }
-  .clients-view { -webkit-mask-image:none; mask-image:none; }
 }
 /* cross-fade between pages in browsers that support it; skipped for people who prefer less motion */
 @media (prefers-reduced-motion: no-preference) { @view-transition { navigation:auto; } }
