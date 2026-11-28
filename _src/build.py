@@ -19,11 +19,17 @@ ICONS = {  # simple geometric marks, one per service, drawn in currentColor
 }
 
 CSS = """\
+/* Manrope, self-hosted (latin subset, SIL OFL: assets/fonts/manrope-OFL.txt) so pages make no request to Google Fonts */
+@font-face { font-family:"Manrope"; font-style:normal; font-weight:400; font-display:swap; src:url("assets/fonts/manrope-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family:"Manrope"; font-style:normal; font-weight:500; font-display:swap; src:url("assets/fonts/manrope-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family:"Manrope"; font-style:normal; font-weight:600; font-display:swap; src:url("assets/fonts/manrope-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family:"Manrope"; font-style:normal; font-weight:700; font-display:swap; src:url("assets/fonts/manrope-latin-700-normal.woff2") format("woff2"); }
+@font-face { font-family:"Manrope"; font-style:normal; font-weight:800; font-display:swap; src:url("assets/fonts/manrope-latin-800-normal.woff2") format("woff2"); }
 :root { --ink:#0a0a0a; --paper:#ffffff; --soft:#f4f2ee; --muted:#5f5f5b; --line:#e2dfd8; --accent:#14307a; --accent-d:#6cc4ff; --accent-hover:#94d6ff; --btn-ink:#0a0a0a;
   --dark:#0a0a0a; --dark-line:#2b2b2b; --dark-muted:#a9a9a4; --focus:#1a5cff; }
 * { box-sizing:border-box; }
 html { scroll-behavior:smooth; }
-body { margin:0; background:var(--paper); color:var(--ink); font:17px/1.65 "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; -webkit-font-smoothing:antialiased; }
+body { margin:0; background:var(--paper); color:var(--ink); font:17px/1.65 "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; -webkit-font-smoothing:antialiased; font-size-adjust:from-font; }
 a { color:inherit; text-underline-offset:3px; }
 :focus-visible { outline:3px solid var(--focus); outline-offset:3px; border-radius:4px; }
 .dark :focus-visible { outline-color:#ffd24a; }
@@ -201,7 +207,7 @@ a.cov:hover .hl { text-decoration:underline; text-decoration-color:var(--accent)
 .talk.blue :focus-visible { outline-color:#ffd24a; }
 .talk .fill-label { font-size:13px; line-height:1.4; letter-spacing:.14em; text-transform:uppercase; font-weight:700; color:var(--accent-d); margin:0 0 24px; }
 .fill-sentence { font-size:clamp(28px, 4.6vw, 56px); line-height:1.5; font-weight:700; letter-spacing:-0.025em; margin:0; max-width:1080px; }
-.blank { font:inherit; font-weight:600; letter-spacing:inherit; line-height:1.15; color:#fff; background:transparent; border:0; border-bottom:3px solid var(--accent-d); border-radius:0; margin:0; padding:0 .05em; min-width:3ch; max-width:100%; vertical-align:baseline; }
+.blank { font:inherit; font-weight:600; letter-spacing:inherit; line-height:1.15; color:#fff; background:transparent; border:0; border-bottom:3px solid var(--accent-d); border-radius:0; margin:0; padding:0 .05em; field-sizing:content; min-width:3ch; max-width:100%; vertical-align:baseline; }
 .blank::placeholder { color:rgba(255,255,255,.62); opacity:1; }
 select.blank { -webkit-appearance:none; appearance:none; cursor:pointer; padding-right:.75em; background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 12'%3E%3Cpath d='M2 2l8 8 8-8' fill='none' stroke='%236cc4ff' stroke-width='3'/%3E%3C/svg%3E") no-repeat right 0 center / .48em auto; }
 select.blank option { color:var(--ink); background:#fff; font-size:17px; font-weight:500; }
@@ -254,13 +260,24 @@ button.btn { font:inherit; font-weight:800; font-size:16px; line-height:inherit;
   footer.site .cols3 { grid-template-columns:1fr; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition:none !important; scroll-behavior:auto !important; } }
+/* cross-fade between pages in browsers that support it; skipped for people who prefer less motion */
+@media (prefers-reduced-motion: no-preference) { @view-transition { navigation:auto; } }
 """
 
 # Privacy-friendly traffic counter (GoatCounter): no cookies, no personal data.
 # Dashboard: https://rizky-wicaksono.goatcounter.com
 GOATCOUNTER = '<script data-goatcounter="https://rizky-wicaksono.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>\n'
 
-FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">\n'
+# Preload the two weights most of the first screen uses (body text and headings); the rest load on demand.
+def fonts(pre):
+    return "".join(f'<link rel="preload" href="{pre}assets/fonts/manrope-latin-{w}-normal.woff2" as="font" type="font/woff2" crossorigin>\n' for w in (400, 800))
+
+# Prefetch a same-site page when the visitor shows intent (hover or press), so the next page opens almost at once.
+# Browsers without speculation rules ignore this.
+SPECULATION = '''<script type="speculationrules">
+{"prefetch": [{"where": {"href_matches": "/*"}, "eagerness": "moderate"}]}
+</script>
+'''
 
 
 def img_for(url):
@@ -295,13 +312,44 @@ def thumb(src, fallback, extra="", pre=""):
     return f'<span class="thumb">{extra}<span class="fb" aria-hidden="true">{e(fallback)}</span>{img}</span>'
 
 
-def logo_thumb(c, pre="", radius=""):
+def img_size(path):
+    """' width=".." height=".."' for a local image (repo-relative path), so the browser reserves its space before it loads."""
+    import struct
+    try:
+        with open(os.path.join(SRC_ROOT, path), "rb") as f:
+            b = f.read(65536)
+    except OSError:
+        return ""
+    w = h = None
+    if b[:8] == b"\x89PNG\r\n\x1a\n":
+        w, h = struct.unpack(">II", b[16:24])
+    elif b[:2] == b"\xff\xd8":
+        i = 2
+        while i + 9 < len(b):
+            if b[i] != 0xFF:
+                i += 1
+                continue
+            m = b[i + 1]
+            if m in (0xC0, 0xC1, 0xC2):
+                h, w = struct.unpack(">HH", b[i + 5:i + 9])
+                break
+            i += 2 + struct.unpack(">H", b[i + 2:i + 4])[0]
+    elif path.endswith(".svg"):
+        t = b.decode("utf-8", "ignore")
+        vb = re.search(r'viewBox="\s*[-\d.]+[\s,]+[-\d.]+[\s,]+([\d.]+)[\s,]+([\d.]+)', t)
+        if vb:
+            w, h = round(float(vb.group(1))), round(float(vb.group(2)))
+    return f' width="{w}" height="{h}"' if w and h else ""
+
+
+def logo_thumb(c, pre="", radius="", eager=False):
     """Client logo, centred on a plain tile. Falls back to the client's initials when no logo file exists."""
     p = logo_path(c["slug"])
     st = f' style="{radius}"' if radius else ""
     if not p:
         return f'<span class="logo-thumb"{st}><span class="fb" aria-hidden="true">{e(initials(c["name"]))}</span></span>'
-    return f'<span class="logo-thumb"{st}><img src="{pre}{p}" alt="{e(c["name"])} logo"></span>'
+    lazy = '' if eager else ' loading="lazy"'
+    return f'<span class="logo-thumb"{st}><img src="{pre}{p}" alt="{e(c["name"])} logo"{img_size(p)}{lazy}></span>'
 
 
 # DESCS and TITLE_NAME (case page descriptions and short names) come from the case files via data.py
@@ -426,8 +474,8 @@ def head(title, desc, path, extra="", pre=None, lang="en", alt=None, gsv=False):
 <meta name="twitter:image" content="{BASE}/share-v2.png">
 <meta name="theme-color" content="#0a0a0a">
 <link rel="icon" href="{pre}favicon.svg" type="image/svg+xml">
-{FONTS}<link rel="stylesheet" href="{pre}style.css">
-{extra}{GOATCOUNTER}</head>
+{fonts(pre)}<link rel="stylesheet" href="{pre}style.css">
+{SPECULATION}{extra}{GOATCOUNTER}</head>
 <body>
 <a class="skip" href="#main">{C['skip']}</a>
 <div class="dark">
@@ -594,7 +642,7 @@ def home(lang="en"):
       <a class="btn ghost" href="#work">{T['btn_work']}</a>
     </div>
   </div>
-  <div class="hero-art"><span class="blob"><img src="{pre}assets/hero-peep.svg" alt="{T['hero_alt']}"></span></div>
+  <div class="hero-art"><span class="blob"><img src="{pre}assets/hero-peep.svg" alt="{T['hero_alt']}"{img_size("assets/hero-peep.svg")}></span></div>
 </div></section>
 </div>
 """
@@ -685,7 +733,7 @@ def case(i):
     prev_c = CASES[i - 1] if i > 0 else None
     next_c = CASES[i + 1] if i < len(CASES) - 1 else None
     pre = "../../"
-    cover_html = logo_thumb(c, pre, "border-radius:6px;")
+    cover_html = logo_thumb(c, pre, "border-radius:6px;", eager=True)
     stats = ""
     if c["stats"]:
         stats = '<section class="block" style="padding-block:56px 0"><div class="wrap"><div class="stats" style="margin-top:0">' + "".join(
