@@ -2,7 +2,7 @@
 """Site-wide data: links, case studies and experience. Used by build.py."""
 import html, json, os, sys, textwrap
 
-from content import load_cases, load_home
+from content import load_cases, load_clients, load_home
 
 SRC_ROOT = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))  # the repo root
 # Output folder: first command-line argument, else _site/ in the repo root.
@@ -32,4 +32,5 @@ CASES, CASE_ID, DESCS, TITLE_NAME, IMAGES = load_cases()
 
 # Experience rows: the `experience` list in content/home/en.yml
 EXPERIENCE = load_home("en")[1]
+CLIENT_LABELS, CLIENTS = load_clients()  # logo strip under the home hero (content/clients.yml)
 

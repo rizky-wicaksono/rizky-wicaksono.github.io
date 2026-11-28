@@ -38,7 +38,14 @@ a { color:inherit; text-underline-offset:3px; }
 .wrap { width:min(1200px, 100% - 48px); margin-inline:auto; }
 
 .dark { background:var(--dark); color:#fff; }
-header.site .wrap { display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; padding-block:22px; }
+/* Header stays at the top while scrolling. Once the page is scrolled (assets/site.js adds .is-scrolled),
+   it turns into a floating dark "pill" so the logo and menu stay in reach without covering the page. */
+html { scroll-padding-top:96px; }
+header.site { position:sticky; top:0; z-index:50; background:var(--dark); color:#fff; view-transition-name:site-header; transition:background-color .3s, padding .3s; }
+header.site .wrap { display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; padding-block:22px; border:1px solid transparent; border-radius:999px; transition:width .35s cubic-bezier(.2,.7,.2,1), padding .35s cubic-bezier(.2,.7,.2,1), background-color .3s, border-color .3s, box-shadow .3s; }
+header.site.is-scrolled { background:transparent; padding-top:12px; }
+header.site.is-scrolled .wrap { width:min(980px, 100% - 32px); padding:10px 12px 10px 24px; background:rgba(14,14,14,.92); -webkit-backdrop-filter:saturate(1.4) blur(14px); backdrop-filter:saturate(1.4) blur(14px); border-color:#2b2b2b; box-shadow:0 10px 30px rgba(0,0,0,.22); }
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))) { header.site.is-scrolled .wrap { background:#0e0e0e; } }
 .brand { font-weight:800; font-size:20px; text-decoration:none; letter-spacing:-0.01em; display:inline-flex; align-items:center; gap:10px; }
 .brand i { width:14px; height:14px; border-radius:50%; background:var(--accent-d); display:inline-block; }
 nav ul { display:flex; flex-wrap:wrap; gap:8px 30px; list-style:none; margin:0; padding:0; }
@@ -63,6 +70,27 @@ p { margin:0 0 16px; }
 .hero-art { width:100%; max-width:440px; justify-self:end; }
 .hero-art .blob { display:block; position:relative; aspect-ratio:1; border-radius:50%; background:var(--accent-d); overflow:hidden; }
 .hero-art .blob img { position:absolute; left:50%; bottom:-2%; width:86%; height:auto; transform:translateX(-50%); }
+/* soft dot texture and a blue glow behind the illustration, so the hero isn't a flat black block */
+.hero { background:radial-gradient(520px 420px at 80% 48%, rgba(108,196,255,.18), transparent 70%), radial-gradient(rgba(255,255,255,.07) 1px, transparent 1.2px) 0 0 / 22px 22px; }
+#marcomm { background:radial-gradient(640px 400px at 0% 100%, rgba(108,196,255,.14), transparent 70%), var(--dark); }
+#services { background:linear-gradient(180deg, var(--soft), #eaf3fb); }
+
+/* client logo strip under the hero (content/clients.yml); scrolls slowly, pauses on hover or with the button */
+.clients { background:var(--soft); border-bottom:1px solid var(--line); padding-block:22px; }
+.clients .wrap { display:flex; align-items:center; gap:20px 36px; }
+.clients-label { margin:0; flex:none; font-size:13px; font-weight:700; color:var(--muted); max-width:14em; line-height:1.35; }
+.clients-view { flex:1; min-width:0; overflow:hidden; -webkit-mask-image:linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image:linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+.clients-track { display:flex; width:max-content; background:var(--soft); animation:clients-scroll var(--clients-dur, 40s) linear infinite; }
+.clients-track ul { display:flex; align-items:center; gap:56px; list-style:none; margin:0; padding:0 28px; }
+.clients-track img { display:block; height:32px; width:auto; max-width:132px; object-fit:contain; filter:grayscale(1); mix-blend-mode:multiply; opacity:.72; transition:filter .25s, opacity .25s; }
+.clients-track li:hover img { filter:none; opacity:1; }
+.clients-view:hover .clients-track, .clients.paused .clients-track { animation-play-state:paused; }
+@keyframes clients-scroll { to { transform:translateX(-50%); } }
+.clients-toggle { flex:none; width:36px; height:36px; display:grid; place-items:center; border-radius:50%; border:1px solid var(--line); background:var(--paper); color:var(--ink); cursor:pointer; padding:0; }
+.clients-toggle:hover { border-color:var(--ink); }
+.clients-toggle svg { width:14px; height:14px; }
+.clients-toggle .play, .clients.paused .clients-toggle .pause { display:none; }
+.clients.paused .clients-toggle .play { display:block; }
 
 section.block { padding-block:clamp(64px, 9vw, 112px); }
 section.soft { background:var(--soft); }
@@ -86,7 +114,8 @@ a.chip:hover { background:var(--accent); color:#fff; }
 .mc-stats .stat b { font-size:clamp(36px, 4.4vw, 60px); }
 .mc-stats .stat span { color:var(--dark-muted); }
 .services { display:grid; grid-template-columns:repeat(3, 1fr); gap:56px 40px; }
-.service svg { width:72px; height:72px; color:var(--ink); display:block; margin-bottom:22px; }
+.service svg { box-sizing:content-box; width:44px; height:44px; padding:14px; border-radius:16px; background:var(--paper); color:var(--accent); display:block; margin-bottom:22px; box-shadow:0 1px 0 var(--line), 0 6px 18px rgba(20,48,122,.08); transition:transform .25s cubic-bezier(.2,.7,.2,1), background-color .25s, color .25s; }
+.service:hover svg { background:var(--accent-d); color:var(--btn-ink); transform:translateY(-3px) rotate(-4deg); }
 .service p { font-size:16px; color:#3b3b38; }
 .more { font-weight:800; font-size:15px; text-decoration:none; border-bottom:2px solid var(--accent); padding-bottom:2px; }
 .more:hover { background:var(--accent); }
@@ -253,13 +282,35 @@ button.btn { font:inherit; font-weight:800; font-size:16px; line-height:inherit;
   .stats { grid-template-columns:1fr 1fr; }
   .mc-stats { grid-template-columns:1fr 1fr; gap:28px 16px; }
   .logo-thumb { aspect-ratio:16/9; }
-  .service svg { width:56px; height:56px; margin-bottom:16px; }
+  .service svg { width:36px; height:36px; padding:12px; margin-bottom:16px; }
+  .clients .wrap { flex-wrap:wrap; gap:14px 12px; }
+  .clients-label { max-width:none; flex:1; }
+  .clients-view { order:3; flex-basis:100%; }
+  header.site .wrap { gap:10px; padding-block:14px; }
+  .hd-right { width:100%; justify-content:space-between; gap:12px; flex-wrap:nowrap; }
+  nav ul { gap:4px 14px; }
+  nav a { font-size:14px; }
+  header.site.is-scrolled { padding-top:8px; }
+  header.site.is-scrolled .wrap { width:calc(100% - 16px); border-radius:20px; padding:10px 14px; gap:6px; }
+  html { scroll-padding-top:112px; }
   .stats { gap:28px; }
-  nav ul { gap:4px 18px; }
-  nav a { font-size:15px; }
   footer.site .cols3 { grid-template-columns:1fr; }
 }
-@media (prefers-reduced-motion: reduce) { * { transition:none !important; scroll-behavior:auto !important; } }
+/* cards and services rise in gently as they scroll into view (CSS scroll-driven animation; browsers without it show them as-is).
+   Uses `translate`, not `transform`, so the hover lift on cards still works. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .cards > .card, .services > .service, .stats .stat, .mc-stats .stat, .tool-list > li { animation:rise linear both; animation-timeline:view(); animation-range:entry 5% entry 55%; }
+  }
+}
+@keyframes rise { from { opacity:0; translate:0 18px; } to { opacity:1; translate:0 0; } }
+@media (prefers-reduced-motion: reduce) {
+  * { transition:none !important; scroll-behavior:auto !important; }
+  .clients-track { animation:none; width:auto; }
+  .clients-track ul { flex-wrap:wrap; justify-content:center; gap:20px 40px; }
+  .clients-track ul[aria-hidden], .clients-toggle { display:none; }
+  .clients-view { -webkit-mask-image:none; mask-image:none; }
+}
 /* cross-fade between pages in browsers that support it; skipped for people who prefer less motion */
 @media (prefers-reduced-motion: no-preference) { @view-transition { navigation:auto; } }
 """
@@ -475,10 +526,10 @@ def head(title, desc, path, extra="", pre=None, lang="en", alt=None, gsv=False):
 <meta name="theme-color" content="#0a0a0a">
 <link rel="icon" href="{pre}favicon.svg" type="image/svg+xml">
 {fonts(pre)}<link rel="stylesheet" href="{pre}style.css">
+<script src="{pre}assets/site.js" defer></script>
 {SPECULATION}{extra}{GOATCOUNTER}</head>
 <body>
 <a class="skip" href="#main">{C['skip']}</a>
-<div class="dark">
 <header class="site"><div class="wrap">
   <a class="brand" href="{rel(path, home)}"><i aria-hidden="true"></i>Rizky Wicaksono</a>
   <div class="hd-right">
@@ -491,6 +542,8 @@ def head(title, desc, path, extra="", pre=None, lang="en", alt=None, gsv=False):
     <div class="lang" role="group" aria-label="Language">{''.join(sw)}</div>
   </div>
 </div></header>
+<main id="main">
+<div class="dark">
 """
 
 
@@ -582,6 +635,25 @@ def fill_cta(X, pre, sid="contact"):
   <script src="{pre}assets/fill-cta.js" defer></script>"""
 
 
+def clients_strip(lang, pre):
+    """Slowly scrolling row of client logos under the home hero. The list is drawn twice so the loop is seamless;
+    the copy is hidden from screen readers. Empty when content/clients.yml has no logos."""
+    if not CLIENTS:
+        return ""
+    label = CLIENT_LABELS.get(lang) or CLIENT_LABELS.get("en") or ""
+    items = "".join(f'<li><img src="{pre}{e(src)}" alt="{e(name)}"{img_size(src)} loading="lazy"></li>' for name, src in CLIENTS)
+    copy = "".join(f'<li><img src="{pre}{e(src)}" alt=""{img_size(src)} loading="lazy"></li>' for name, src in CLIENTS)
+    pause = "Jeda logo" if lang == "id" else "Pause logos"
+    return f"""<section class="clients" aria-label="{e(label)}"><div class="wrap">
+  <p class="clients-label" aria-hidden="true">{e(label)}</p>
+  <div class="clients-view"><div class="clients-track" style="--clients-dur:{max(24, len(CLIENTS) * 6)}s">
+    <ul>{items}</ul><ul aria-hidden="true">{copy}</ul>
+  </div></div>
+  <button class="clients-toggle" type="button" aria-pressed="false" aria-label="{pause}"><svg class="pause" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 2h3v10H3zM8 2h3v10H8z" fill="currentColor"/></svg><svg class="play" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 1.5v11l9-5.5z" fill="currentColor"/></svg></button>
+</div></section>
+"""
+
+
 def home(lang="en"):
     T = HOME[lang]
     C = CHROME[lang]
@@ -631,8 +703,7 @@ def home(lang="en"):
     <a class="btn ghost" href="mailto:rizky.wcaksono@gmail.com">{T['talk_mail']}</a>
   </div>
 </div></section>"""
-    hero = f"""<main id="main">
-<section class="hero"><div class="wrap">
+    hero = f"""<section class="hero"><div class="wrap">
   <div>
     <p class="label">Rizky Wicaksono</p>
     <h1>{T['h1']}</h1>
@@ -725,7 +796,7 @@ def home(lang="en"):
 """
     extra = ld(PERSON) if lang == "en" else ""
     alt = {"en": home_file("en"), "id": home_file("id")}
-    return head(T["title"], T["desc"], cur, extra, None, lang, alt, gsv=(lang == "en")) + hero + body + foot(cur, lang)
+    return head(T["title"], T["desc"], cur, extra, None, lang, alt, gsv=(lang == "en")) + hero + clients_strip(lang, pre) + body + foot(cur, lang)
 
 
 def case(i):
@@ -749,8 +820,7 @@ def case(i):
     pager += (f'<a href="../{prev_c["slug"]}/index.html"><small>Previous</small>← {e(prev_c["name"])}</a>' if prev_c else '<span></span>')
     pager += (f'<a href="../{next_c["slug"]}/index.html" style="text-align:right"><small>Next</small>{e(next_c["name"])} →</a>' if next_c else '<a href="../../index.html#work" style="text-align:right"><small>Back</small>All selected work →</a>')
     pager += "</div>"
-    top = f"""<main id="main">
-<section class="case-hero"><div class="wrap">
+    top = f"""<section class="case-hero"><div class="wrap">
   <div>
     <a class="crumb" href="../../index.html#work">← Selected work</a>
     <h1>{e(c['name'])}</h1>
@@ -798,8 +868,7 @@ def guides_index(lang="en"):
     tool_items = "\n".join(
         f'    <li><a href="{rel(cur, article_file(a, al))}"{hl(al, lang)}><div><h3>{e(a[al]["title"])}{C["en_only"] if al != lang else ""}</h3><p>{e(a[al]["desc"])}</p></div><span class="when">{nice_date(a[al]["date"], lang)} · {a[al]["minutes"]} {C["min"]}</span></a></li>'
         for a in ARTICLES if a.get("tool") for al in [lang if lang in a else "en"])
-    top = f"""<main id="main">
-<section class="case-hero"><div class="wrap" style="grid-template-columns:1fr">
+    top = f"""<section class="case-hero"><div class="wrap" style="grid-template-columns:1fr">
   <div>
     <a class="crumb" href="{rel(cur, home_file(lang))}">{C['home']}</a>
     <h1>{C['bc_guides']}</h1>
@@ -860,8 +929,7 @@ def tools_index(lang="en"):
         <a class="btn" href="{BASE}{t['url']}">{C['tool_open']}<span class="sr"> {e(t['name'])}</span></a>
       </span>
     </li>""")
-    top = f"""<main id="main">
-<section class="case-hero"><div class="wrap" style="grid-template-columns:1fr">
+    top = f"""<section class="case-hero"><div class="wrap" style="grid-template-columns:1fr">
   <div>
     <a class="crumb" href="{rel(cur, home_file(lang))}">{C['home']}</a>
     <h1>{C['bc_tools']}</h1>
@@ -936,8 +1004,7 @@ def article(a, lang="en"):
     pager += (f'<a href="{rel(cur, article_file(prev_a, lang))}"><small>{C["prev"]}</small>← {e(prev_a[lang]["title"])}</a>' if prev_a else "<span></span>")
     pager += (f'<a href="{rel(cur, article_file(next_a, lang))}" style="text-align:right"><small>{C["next"]}</small>{e(next_a[lang]["title"])} →</a>' if next_a else f'<a href="{rel(cur, guides_file(lang))}" style="text-align:right"><small>{C["back"]}</small>{C["all_guides"]}</a>')
     pager += "</div>"
-    top = f"""<main id="main">
-<section class="case-hero"><div class="wrap" style="grid-template-columns:1fr">
+    top = f"""<section class="case-hero"><div class="wrap" style="grid-template-columns:1fr">
   <div style="max-width:860px">
     <a class="crumb" href="{rel(cur, guides_file(lang))}">{C['back_guides']}</a>
     <h1 style="font-size:clamp(32px,4.6vw,60px)">{e(X["title"])}</h1>

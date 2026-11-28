@@ -6,6 +6,11 @@ media:
     input: assets/img
     output: /assets/img
     categories: [image]
+  - name: logos
+    label: Logo klien / Client logos
+    input: assets/logos
+    output: /assets/logos
+    categories: [image]
 
 content:
   - name: home_id
@@ -598,6 +603,38 @@ content:
       - name: teaser
         label: Kalimat di kartu
         type: string
+  - name: clients
+    label: Klien (strip logo) / Clients (logo strip)
+    type: file
+    path: content/clients.yml
+    format: yaml
+    fields:
+    - name: label_id
+      label: Label (Bahasa Indonesia)
+      type: string
+    - name: label_en
+      label: Label (English)
+      type: string
+    - name: clients
+      label: Klien / Clients
+      description: Urutan di sini = urutan di strip. Logo PNG/SVG berlatar transparan atau putih paling bagus. / Order here = order in the strip.
+      type: object
+      list:
+        collapsible:
+          collapsed: true
+          summary: '{name}'
+      fields:
+      - name: name
+        label: Nama klien / Client name
+        type: string
+        required: true
+        description: Dibacakan untuk pembaca layar. / Read out by screen readers.
+      - name: logo
+        label: Logo
+        type: image
+        required: true
+        options:
+          media: logos
   - name: tools
     label: Tools
     type: file
